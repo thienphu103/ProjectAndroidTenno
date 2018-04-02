@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.a.projectapptenno.HomeActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="#9fe2ff">
+
+        <RelativeLayout
+            android:id="@+id/toobar_home"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#9fe2ff">
+
+            <TextView
+                android:id="@+id/txt_city_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:text="@string/txt_city"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/img_user_home"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/userw" />
+
+            <TextView
+                android:id="@+id/txt_weather_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_city_home"
+                android:layout_marginLeft="10dp"
+                android:text="27"
+                android:textColor="#fff"
+                android:textSize="68sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_sunny_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_weather_home"
+                android:layout_marginLeft="10dp"
+                android:text="@string/txt_weather_home"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbar"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:background="#fff"
+                android:layout_height="56dp"
+                android:theme="@style/AppTheme.AppBarOverlay">
+                <android.support.design.widget.TabLayout
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/tabs"
+                    app:tabIndicatorColor="#1565C0"
+                    app:tabSelectedTextColor="#1565C0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </android.support.design.widget.TabLayout>
+            </android.support.design.widget.AppBarLayout>
+            <android.support.v4.view.ViewPager
+                android:layout_below="@id/appbar"
+                android:id="@+id/viewpager_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                ></android.support.v4.view.ViewPager>
+
+
+        </RelativeLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</RelativeLayout>

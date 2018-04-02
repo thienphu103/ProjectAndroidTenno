@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_tomorrow2_home"
+    >
+    <RelativeLayout
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearlayout_tomorrow2"
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_buoisang"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:id="@+id/txt_buoisang_tomorrow2"
+                />
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/img_sun_tomorrow2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/sun"
+                />
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/txt_buoisang_tomorrow2"
+                android:textSize="14sp"
+                android:textColor="#000"
+                android:text="25 C"
+                android:id="@+id/txt_doCSun_tomorrow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_buoitrua"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:id="@+id/txt_buoitrua_tomorrow2"
+                />
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/img_trua_tomorrow2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/cloud"
+                />
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/txt_buoitrua_tomorrow2"
+                android:textSize="14sp"
+                android:textColor="#000"
+                android:text="26 C"
+                android:id="@+id/txt_doCNoon_tomorrow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_buoichieu"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:id="@+id/txt_buoichieu_tomorrow2"
+                />
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/img_buoichieu_tomorrow2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/cloud2"
+                />
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/txt_buoichieu_tomorrow2"
+                android:textSize="14sp"
+                android:textColor="#000"
+                android:text="29 C"
+                android:id="@+id/txt_doCAfternoon_tomorrow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_buoitoi"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:id="@+id/txt_buoitoi_tomorrow2"
+                />
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/img_buoitoi_tomorrow2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/cloudy"
+                />
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/txt_buoitoi_tomorrow2"
+                android:textSize="14sp"
+                android:textColor="#000"
+                android:text="32 C"
+                android:id="@+id/txt_doCNight_tomorrow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ListView
+        android:divider="@null"
+        android:dividerHeight="20dp"
+        android:id="@+id/lst_fragment_tomorrow2"
+        android:layout_below="@+id/linearlayout_tomorrow2"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+</RelativeLayout>
+</FrameLayout>

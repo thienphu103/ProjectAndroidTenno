@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".DetailActivity"
+    tools:showIn="@layout/activity_detail">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txt_motamonan_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Trong nấm có nhiều nguyên tố vi lượng và vitamin rất tốt cho tim mạch, hệ bài tiết và chỗng lão hóa. Không gì bằng hơn một bát cháo nấm nóng hổi vào buổi sớm sương còn se lạnh."
+            android:textColor="#000"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/linrear_nguyenlieu_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_motamonan_details"
+            android:background="#EFEFEF"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="NGUYÊN LIỆU"
+                android:textColor="#000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="– 100g gạo \n
+– 1 lít nước \n
+– 200g nấm rơm \n
+– 1 củ cà rốt\n
+– Muối, tiêu\n
+– Hành lá, tía tô" />
+
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/txt_cachlam_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CÁCH LÀM"
+            android:layout_margin="20dp"
+            android:textSize="14sp"
+            android:layout_below="@id/linrear_nguyenlieu_detail"
+            android:textColor="#000"
+            />
+        <TextView
+            android:id="@+id/txt_sochenguyenlieu_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sơ chê nguyên liệu"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="14sp"
+            android:layout_below="@id/txt_cachlam_details"
+            android:textColor="#000"
+            />
+        <TextView
+            android:id="@+id/txt_motacachlam_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="– Gạo vo sạch, ngâm trong nước lạnh khoảng 30 phút. Sau đó, vớt gạo ra để ráo nước.\n
+– Nấm rơm bỏ phần đất cát bám, rửa sạch nhiều lần với nước.\n
+– Hành lá, tía tô rửa sạch rồi thái nhỏ để vào bát riêng.
+"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="14sp"
+            android:layout_below="@id/txt_sochenguyenlieu_details"
+            />
+        <TextView
+            android:id="@+id/txt_cachbuoclam_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Các bước làm"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="14sp"
+            android:layout_below="@id/txt_motacachlam_details"
+            android:textColor="#000"
+            />
+        <TextView
+            android:id="@+id/txt_motacacbuoclam_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="– Cho gạo vào nồi cùng với 1 lít nước và 1 ít muối. Nấu cháo cho đển khi nở và mềm.\n
+– Trong khi chờ gạo nở, bạn bắc chảo dầu nóng, cho cà rốt vào xào trước rồi cho tiếp vào xào sơ qua. Tiếp theo nêm 1 ít muối, hạt nêm vào hỗn hợp xào trên.\n
+– Khi gạo đã nở và mềm, cho nấm vào nồi cháo, đun sôi thêm khoảng 3 phút, sau đó nêm nếm lại lần nữa đã vừa ăn chưa rồi tắt bếp.\n
+– Cuối cùng, múc cháo ra bát rồi rắc hành lá và tía tô lên trên.
+"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="14sp"
+            android:layout_below="@id/txt_cachbuoclam_details"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#95989A"
+            android:layout_below="@id/txt_motacacbuoclam_details"
+            android:layout_marginTop="20dp"
+            android:id="@+id/view_dateils"
+            />
+        <Button
+            android:id="@+id/btn_themvaodanhsachyeuthich_details"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@id/view_dateils"
+            android:background="@drawable/button_custom_huy_changethepassword"
+            android:text="THÊM VÀO DANH SÁCH YÊU THÍCH"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            />
+        <Button
+            android:id="@+id/btn_chiaselenfb_details"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@id/btn_themvaodanhsachyeuthich_details"
+            android:background="@drawable/button_custom_xacnhan_changethepassword"
+            android:text="CHIA SẼ LÊN FACEBOOK"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#fff"
+            android:layout_below="@id/btn_chiaselenfb_details"
+            android:layout_marginTop="20dp"
+            android:id="@+id/view_dateils3"
+            />
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

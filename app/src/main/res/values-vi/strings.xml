@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ProjectAppTenno</string>
+    <string name="ext_user_login">Email hoặc số điện thoại</string>
+    <string name="ext_password_login">Mật khẩu</string>
+    <string name="btn_login_login">Đăng nhập</string>
+    <string name="txt_signup_login">Hoặc đăng ký bằng</string>
+    <string name="txt_city">Hồ Chí Minh</string>
+    <string name="txt_weather_home">Có nắng</string>
+    <string name="txt_monanyeuthich">Món ăn yêu thích</string>
+    <string name="txt_thaydoimatkhau">Thay đổi mật khẩu</string>
+    <string name="txt_doinguphattrien">Đội ngũ phát triển</string>
+    <string name="txt_dangxuat">Đăng xuất</string>
+    <string name="txt_danhsachyeuthich">Danh sách yêu thích</string>
+    <string name="txt_diemtam">Điểm tâm</string>
+    <string name="ext_nhapmatkhauhientai">Nhập mật khẩu hiện tại</string>
+    <string name="ext_nhapmatkhaumoi">Nhập mật khẩu mới</string>
+    <string name="ext_nhaplaimatkhaumoi">Nhập lại mật khẩu mới</string>
+    <string name="btn_huy">Hủy</string>
+    <string name="btn_xacnhan">Xác nhận</string>
+    <string name="txt_today">Hôm nay</string>
+    <string name="txt_tomorrow">Ngày mai</string>
+    <string name="txt_ngaykia">Ngày kia</string>
+    <string name="txt_buoisang">Sáng</string>
+    <string name="txt_buoitrua">Trưa</string>
+    <string name="txt_buoichieu">Chiều</string>
+    <string name="txt_buoitoi">Tối</string>
+</resources>
