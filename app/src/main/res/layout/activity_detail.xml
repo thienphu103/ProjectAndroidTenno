@@ -27,39 +27,37 @@
 
             <ImageView
                 android:layout_width="wrap_content"
+                android:layout_height="350dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@drawable/foodbanhmithit2"
+                app:layout_collapseMode="parallax" />
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/foodbanhmithit2" />
-
-            <RelativeLayout
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="80dp"
+                android:text="@string/txt_diemtam"
+                />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-                <TextView
-                    android:layout_marginTop="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:id="@+id/diemtam"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_diemtam"
-                    android:textColor="#fff"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:id="@+id/monan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/diemtam"
-                    android:text="Bánh mì thịt"
-                    android:textColor="#fff"
-                    android:textSize="34sp" />
-
-            </RelativeLayout>
-
-            <include
-                android:id="@+id/toobar_details"
-                layout="@layout/toobar_details" />
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="Bánh mì thịt"
+                app:titleMarginBottom="50dp"
+                app:titleMarginStart="15dp"
+                app:layout_collapseMode="pin"
+                >
+                <ImageView
+                    android:id="@+id/img_back_details"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/icon"
+                    />
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
