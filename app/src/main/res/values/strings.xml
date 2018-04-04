@@ -120,4 +120,9 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="txt_taotaikhoan">Create new account ?</string>
+    <string name="ext_emailorphone">Email or phone number</string>
+    <string name="ext_nhapmatkhau">Enter password</string>
+    <string name="ext_xacnhanmatkhau">Confirm password</string>
+    <string name="btn_Registration">Registration</string>
 </resources>

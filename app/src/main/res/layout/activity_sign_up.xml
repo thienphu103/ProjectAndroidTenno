@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".SignUpActivity">
+    <include
+        layout="@layout/toobar_signup"
+        android:id="@+id/toobar_signup"
+        />
+    <EditText
+        android:layout_marginTop="40dp"
+        android:background="@drawable/edittext_custom_changethepassword"
+        android:id="@+id/ext_email"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:textColor="#000000"
+        android:inputType="textEmailAddress|phone"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/toobar_signup"
+        android:hint="@string/ext_emailorphone"
+        android:layout_width="match_parent"
+        android:layout_height="49dp" />
+    <EditText
+        android:layout_marginTop="10dp"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_custom_changethepassword"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:inputType="textPassword"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/ext_nhapmatkhau"
+        android:layout_below="@id/ext_email"
+        android:hint="@string/ext_nhapmatkhaumoi"
+        android:layout_width="match_parent"
+        android:layout_height="49dp" />
+    <EditText
+        android:layout_marginTop="10dp"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_custom_changethepassword"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:inputType="textPassword"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/ext_xacnhanmatkhau"
+        android:layout_below="@id/ext_nhapmatkhau"
+        android:hint="@string/ext_xacnhanmatkhau"
+        android:layout_width="match_parent"
+        android:layout_height="49dp" />
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@id/ext_xacnhanmatkhau"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        >
+        <Button
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/button_custom_xacnhan_changethepassword"
+            android:layout_weight="1"
+            android:textColor="#fff"
+            android:id="@+id/btn_signup"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:text="@string/btn_Registration"
+            android:layout_width="match_parent"
+            android:layout_height="49dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

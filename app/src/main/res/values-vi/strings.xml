@@ -25,4 +25,9 @@
     <string name="txt_buoitrua">Trưa</string>
     <string name="txt_buoichieu">Chiều</string>
     <string name="txt_buoitoi">Tối</string>
+    <string name="txt_taotaikhoan">"Tạo tài khoản mới ? "</string>
+    <string name="ext_emailorphone">Email hoặc số điện thoại</string>
+    <string name="ext_nhapmatkhau">Nhập mật khẩu</string>
+    <string name="ext_xacnhanmatkhau">Xác nhận mật khẩu</string>
+    <string name="btn_Registration">Đăng ký</string>
 </resources>

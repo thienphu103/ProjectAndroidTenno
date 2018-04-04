@@ -14,7 +14,7 @@
         android:alpha="0.9"
         />
     <LinearLayout
-        android:weightSum="6"
+        android:weightSum="7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -75,8 +75,20 @@
             />
         <TextView
             android:textStyle="bold"
-            android:textSize="12sp"
-            android:layout_marginTop="60dp"
+            android:textSize="16sp"
+            android:layout_marginTop="50dp"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:text="@string/txt_taotaikhoan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/txt_newaccount_login"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textSize="14sp"
             android:textColor="#FFFFFF"
             android:gravity="center"
             android:text="@string/txt_signup_login"

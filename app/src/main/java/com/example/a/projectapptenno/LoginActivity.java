@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
     Button btn_login;
+    TextView txt_taotaikhoan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +37,17 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(Login_Home);
             }
         });
+        txt_taotaikhoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Login_SignUp = new Intent(LoginActivity.this,SignUpActivity.class);
+                startActivity(Login_SignUp);
+            }
+        });
     }
 
     private void initControl() {
         btn_login = (Button) findViewById(R.id.btn_login_login);
+        txt_taotaikhoan = (TextView) findViewById(R.id.txt_newaccount_login);
     }
 }
