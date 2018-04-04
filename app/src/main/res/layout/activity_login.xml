@@ -121,5 +121,6 @@
             android:src="@drawable/googlelogo"
             />
         </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>

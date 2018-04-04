@@ -51,7 +51,7 @@
                 android:enabled="false"
                 android:gravity="center"
                 android:onClick="stopUpdatesButtonHandler"
-                android:text="@string/stop_updates"
+                android:text="a"
                 android:visibility="gone" />
         </LinearLayout>
 
@@ -83,7 +83,7 @@
             android:id="@+id/location_inadequate_warning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/location_settings_inadequate_warning"
+            android:text="a"
             android:visibility="invisible" />
     </LinearLayout>
 

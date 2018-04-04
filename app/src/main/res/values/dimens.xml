@@ -7,7 +7,41 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="dimens_linearlayout_width_loginactivity">295dp</dimen>
+    <dimen name="dimens_linearlayout_height_loginactivity">385dp</dimen>
+    <dimen name="dimens_linearlayout_marginbottom_loginactivity">30dp</dimen>
+    <dimen name="dimens_marginright_left_loginactivity">15dp</dimen>
+    <dimen name="dimens_margintop_loginactivity">20dp</dimen>
+    <dimen name="dimens_edittext_height_loginactivity">30dp</dimen>
+    <dimen name="dimens_paddingleft_loginactivity">10dp</dimen>
+    <dimen name="dimens_drawablePadding_loginactivity">13dp</dimen>
+    <dimen name="dimens_edittext_password_margintop_loginactivity">10dp</dimen>
+    <dimen name="dimens_button_login_width_loginactivity">160dp</dimen>
+    <dimen name="dimens_button_login_height_loginactivity">26dp</dimen>
+    <dimen name="dimens_button_login_margintop_loginactivity">30dp</dimen>
+    <dimen name="dimens_img_margintop_loginactivity">50dp</dimen>
+    <dimen name="dimens_fb_gg_margintop_loginactivity">15dp</dimen>
+    <dimen name="dimens_fb_paddingleft_loginactivity">72dp</dimen>
+    <dimen name="dimens_gg_paddingright_loginactivity">75dp</dimen>
+    <dimen name="dimens_linearlayout_width_SignUpactivity">295dp</dimen>
+    <dimen name="dimens_linearlayout_height_SignUpactivity">265dp</dimen>
+    <dimen name="dimens_linearlayout_margintop_SignUpactivity">30dp</dimen>
+    <dimen name="dimens_textview_width_SignUpactivity">35dp</dimen>
+    <dimen name="dimens_textview_margintop_SignUpactivity">15dp</dimen>
+    <dimen name="dimens_textview_password_margintop_SignUpactivity">10dp</dimen>
+    <dimen name="dimens_marginleft_signupactivity">5dp</dimen>
+    <dimen name="dimens_button_margintop_signupactivity">42dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
 
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="dimens_marginleft_find_tablayoutactivity">15dp</dimen>
+    <dimen name="dimens_textview_margintop_find_tablayoutactivity">120dp</dimen>
+    <dimen name="dimens_edittext_textview_find_margintop_tablayoutactivity">35dp</dimen>
+    <dimen name="dimens_listview_find_margintop_tablayoutactivity">35dp</dimen>
+    <dimen name="dimens_CardView_height_tablayoutactivity">144dp</dimen>
+    <dimen name="dimens_CardView_width_tablayoutactivity">89dp</dimen>
+    <dimen name="dimens_RecyclerView_height_tablayoutactivity">160dp</dimen>
+    <dimen name="dimens_button_danhsachnganhhang_height_tablayoutactivity">21dp</dimen>
 
     <dimen name="default_text_size">16sp</dimen>
 
