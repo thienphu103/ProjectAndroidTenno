@@ -17,6 +17,8 @@
             android:layout_height="150dp"
             android:background="#9fe2ff">
 
+
+
             <TextView
                 android:id="@+id/txt_city_home"
                 android:layout_width="wrap_content"
@@ -57,6 +59,8 @@
                 android:text="@string/txt_weather_home"
                 android:textColor="#fff"
                 android:textSize="14sp" />
+
+
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
