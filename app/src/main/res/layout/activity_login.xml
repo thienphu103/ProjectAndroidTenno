@@ -29,6 +29,20 @@
         android:id="@+id/img_logo_login"
         android:adjustViewBounds="true"
         />
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            tools:visibility="gone" />
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/button_facebook_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            tools:visibility="gone"/>
         <EditText
             android:layout_marginTop="70dp"
             android:layout_marginRight="20dp"
@@ -105,7 +119,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
-            <ImageView
+            <ImageButton
                 android:layout_marginRight="15dp"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
@@ -113,13 +127,14 @@
                 android:layout_weight="1"
                 android:src="@drawable/fblogo"
                 />
-             <ImageView
+             <ImageButton
             android:layout_width="37dp"
             android:layout_height="37dp"
             android:id="@+id/img_gg_login"
             android:layout_weight="1"
             android:src="@drawable/googlelogo"
             />
+
         </LinearLayout>
 
     </LinearLayout>

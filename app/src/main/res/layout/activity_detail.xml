@@ -47,7 +47,6 @@
                 android:layout_height="?attr/actionBarSize"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:title="Bánh mì thịt"
-                app:titleMarginBottom="50dp"
                 app:titleMarginStart="15dp"
                 app:layout_collapseMode="pin"
                 >
