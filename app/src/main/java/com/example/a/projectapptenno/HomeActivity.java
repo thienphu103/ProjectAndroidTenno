@@ -455,9 +455,9 @@ public class HomeActivity extends AppCompatActivity
                     Desc.setText((queryResults.getString("text")));
                     SharedPreferences sharedPreferences = getSharedPreferences("Weather", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("weather_today",(queryResultsWeatherDay.getString("high"))+"°C");
-                    editor.putString("weather_tomorrow",(queryResultsWeatherTommorrow.getString("high"))+"°C");
-                    editor.putString("weather_tomorrow2",(queryResultsWeatherTommorrow2.getString("high"))+"°C");
+                    editor.putString("weather_today", (queryResultsWeatherDay.getString("high")) + "°C");
+                    editor.putString("weather_tomorrow", (queryResultsWeatherTommorrow.getString("high")) + "°C");
+                    editor.putString("weather_tomorrow2", (queryResultsWeatherTommorrow2.getString("high")) + "°C");
                     editor.commit();
 
                 } catch (JSONException e) {

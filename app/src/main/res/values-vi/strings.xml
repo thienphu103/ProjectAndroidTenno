@@ -16,6 +16,7 @@
     <string name="ext_nhapmatkhauhientai">Nhập mật khẩu hiện tại</string>
     <string name="ext_nhapmatkhaumoi">Nhập mật khẩu mới</string>
     <string name="ext_nhaplaimatkhaumoi">Nhập lại mật khẩu mới</string>
+    <string name="txt_taotaikhoan">Tạo tài khoản mới ?</string>
     <string name="btn_huy">Hủy</string>
     <string name="btn_xacnhan">Xác nhận</string>
     <string name="txt_today">Hôm nay</string>

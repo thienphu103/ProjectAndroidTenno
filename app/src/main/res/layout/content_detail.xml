@@ -40,6 +40,7 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/txt_nguyenlieu_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
