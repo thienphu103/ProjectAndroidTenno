@@ -1,7 +1,6 @@
 package com.example.a.projectapptenno;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -12,7 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,11 +38,13 @@ public class DetailActivity extends AppCompatActivity {
     TextView txt_nguyenlieu_details;
     TextView txt_motacachlam_details;
     TextView txt_motacacbuoclam_details;
+    Button btn_themvaodanhsachyeuthich_details;
     Toolbar toolbar;
     private String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/crud.php";
     private ProgressDialog mProgressDialog;
     String id_food = "";
     ArrayList<Fragment_Setter_Getter> arrayList;
+    private String id_guest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +61,10 @@ public class DetailActivity extends AppCompatActivity {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.my_statusbar_color));
-    }
-
-    private void initData() {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("Food", MODE_PRIVATE);
         id_food = sharedPreferences.getString("id_food", null);
+        SharedPreferences sharedPreferences2 = getApplicationContext().getSharedPreferences("User", MODE_PRIVATE);
+        id_guest = sharedPreferences2.getString("id_guest", null);
         collapsingToolbarLayout.setTitleEnabled(true);
         collapsingToolbarLayout.setTitle("");
         txt_buaan_details.setText("");
@@ -72,6 +72,11 @@ public class DetailActivity extends AppCompatActivity {
         txt_nguyenlieu_details.setText("");
         txt_motacacbuoclam_details.setText("");
         txt_motacachlam_details.setText("");
+
+    }
+
+    private void initData() {
+
 //        setSupportActionBar(toolbar);
 //        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
 //        collapsingToolbarLayout.setTitle(getResources().getString(R.string.txt_diemtam));
@@ -82,12 +87,14 @@ public class DetailActivity extends AppCompatActivity {
 
     private void initControl() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        collapsingToolbarLayout=(CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         txt_buaan_details = (TextView) findViewById(R.id.txt_buaan_details);
         txt_motamonan_details = (TextView) findViewById(R.id.txt_motamonan_details);
         txt_nguyenlieu_details = (TextView) findViewById(R.id.txt_nguyenlieu_details);
         txt_motacachlam_details = (TextView) findViewById(R.id.txt_motacachlam_details);
         txt_motacacbuoclam_details = (TextView) findViewById(R.id.txt_motacacbuoclam_details);
+        btn_themvaodanhsachyeuthich_details = (Button) findViewById(R.id.btn_themvaodanhsachyeuthich_details);
+
     }
 
     private void initDisplay() {
@@ -123,10 +130,14 @@ public class DetailActivity extends AppCompatActivity {
                                     txt_nguyenlieu_details.setText(MATERIAL);
                                     txt_motacacbuoclam_details.setText(GUIDE);
                                     txt_motacachlam_details.setText(PREPARE);
-
                                 }
-
-
+                                btn_themvaodanhsachyeuthich_details.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        upData(id_guest,id_food);
+                                        Toast.makeText(getApplicationContext(), "Thêm món ăn " + collapsingToolbarLayout.getTitle() + " vào danh sách yêu thích...", Toast.LENGTH_LONG).show();
+                                    }
+                                });
                             }
                             Log.d("JS0NArrayyyy", array.length() + "");
 
@@ -164,9 +175,43 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put("select", "2");
+                hashMap.put("select", "1");
                 return hashMap;
             }
+        };
+        requestQueue.add(stringRequest);
+    }
+    public void upData(final String id_guest, final String id_food) {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_CALL_API_GET_DATA, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+
+                Toast.makeText(getApplicationContext(), "Thêm Thành Công", Toast.LENGTH_SHORT).show();
+//
+//                initUpdateUI();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error" + error.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        }) {
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> stringMap = new HashMap<>();
+//               Bitmap bitmap = ((BitmapDr awable) img_view_photo_nhaphang.getDrawable()).getBitmap();
+////                Bitmap image_fb = BitmapFactory.decodeStream(url_fb.openConnection().getInputStream());
+//                String image = decodeImage(bitmap);
+                stringMap.put("id_guest", id_guest);
+                stringMap.put("id_food", id_food);
+                stringMap.put("select", "3");
+                return stringMap;
+
+            }
+
         };
         requestQueue.add(stringRequest);
     }

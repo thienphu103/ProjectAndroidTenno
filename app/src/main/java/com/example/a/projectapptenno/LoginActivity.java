@@ -1,11 +1,13 @@
 package com.example.a.projectapptenno;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -22,6 +24,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -49,6 +58,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoginActivity extends AppCompatActivity implements
         View.OnClickListener {
     Button btn_login;
@@ -73,7 +85,7 @@ public class LoginActivity extends AppCompatActivity implements
     String email_text = "";
     String password_text = "";
     private Dialog dialog;
-
+    private String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/crud.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,12 +204,13 @@ public class LoginActivity extends AppCompatActivity implements
                             FirebaseUser user = mAuth.getCurrentUser();
 
                             String userName = acct.getDisplayName().toString();
-                            updateUI(user, userName);
+                            String idUser = acct.getId().toString();
+                            updateUI(user, userName, idUser);
                         } else {
                             // If sign in fails, display a message to the user.
 //                            Log.w(TAG, "signInWithCredential:failure", task.getException());
 //                            Snackbar.make(findViewById(R.id.activity_login), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            updateUI(null, null);
+                            updateUI(null, null, null);
                         }
 
                         // [START_EXCLUDE]
@@ -224,7 +237,7 @@ public class LoginActivity extends AppCompatActivity implements
                 new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null, null);
+                        updateUI(null, null, null);
                     }
                 });
     }
@@ -238,19 +251,19 @@ public class LoginActivity extends AppCompatActivity implements
                 new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null, null);
+                        updateUI(null, null, null);
                     }
                 });
     }
 
-    private void updateUI(FirebaseUser user, String name) {
+    private void updateUI(FirebaseUser user, String name, String id) {
         hideProgressDialog();
         if (user != null) {
 //            mStatusTextView.setText(getString(R.string.google_status_fmt, user.getEmail()));
 //            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-            showQuestionDialog(name);
+            showQuestionDialog(name, id);
 //            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
         } else {
 //            mStatusTextView.setText(R.string.signed_out);
@@ -315,8 +328,10 @@ public class LoginActivity extends AppCompatActivity implements
 
                 Log.d("successed", response.toString());
                 String name_facebook_get_data = null;
+                String id_facebook_get_data = null;
                 try {
                     name_facebook_get_data = object1.getString("first_name") + " " + object.getString("last_name");
+                    id_facebook_get_data = object1.getString("id");
 //                    url_facebook_get_data=  "https://graph.facebook.com/" +object1.getString("id")+ "" + "/picture?type=large";
 //                    email_facebook_get_data=object1.getString("email");
                 } catch (JSONException e) {
@@ -324,7 +339,7 @@ public class LoginActivity extends AppCompatActivity implements
                 }
                 //
                 if (name_facebook_get_data != null) {
-                    showQuestionDialog(name_facebook_get_data);
+                    showQuestionDialog(name_facebook_get_data, id_facebook_get_data);
                 }
             }
         });
@@ -427,11 +442,13 @@ public class LoginActivity extends AppCompatActivity implements
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUIEmail(user, edt_email.getText().toString());
+                            String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                            updateUIEmail(user, edt_email.getText().toString(),id);
                         } else {
                             // If sign in fails, display a message to the user.
                             showQuestionDialogError(task.getException().toString());
-                            updateUIEmail(null, null);
+                            updateUIEmail(null, null,null);
                         }
 
                         // [START_EXCLUDE]
@@ -467,10 +484,10 @@ public class LoginActivity extends AppCompatActivity implements
         return valid;
     }
 
-    private void updateUIEmail(FirebaseUser user, String email) {
+    private void updateUIEmail(FirebaseUser user, String email,String id) {
         hideProgressDialog();
         if (user != null) {
-            showQuestionDialog(email);
+            showQuestionDialog(email, id);
         } else {
 
         }
@@ -482,7 +499,7 @@ public class LoginActivity extends AppCompatActivity implements
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser, null);
+        updateUI(currentUser, null, null);
     }
 
     @Override
@@ -516,7 +533,7 @@ public class LoginActivity extends AppCompatActivity implements
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
                 // [START_EXCLUDE]
-                updateUI(null, null);
+                updateUI(null, null, null);
                 // [END_EXCLUDE]
             }
         }
@@ -524,15 +541,19 @@ public class LoginActivity extends AppCompatActivity implements
     }
 
 
-    public void showQuestionDialog(String NameUser) {
+    public void showQuestionDialog(String NameUser, final String id_guest) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("App");
-        builder.setMessage("Bạn có muốn đăng nhập với tên " + NameUser + " không?");
+        builder.setMessage("Bạn có muốn đăng nhập với tài khoản: " + NameUser + "\nID: "+id_guest + " không?");
         builder.setCancelable(false);
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                upData("id" + id_guest);
+                SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("id_guest", "id" + id_guest + "");
+                editor.commit();
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
@@ -564,6 +585,41 @@ public class LoginActivity extends AppCompatActivity implements
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
+    }
+
+    public void upData(final String id_guest) {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_CALL_API_GET_DATA, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+
+                Toast.makeText(getApplicationContext(), "Tạo Bảng Thành Công", Toast.LENGTH_SHORT).show();
+//
+//                initUpdateUI();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error" + error.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        }) {
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> stringMap = new HashMap<>();
+//               Bitmap bitmap = ((BitmapDr awable) img_view_photo_nhaphang.getDrawable()).getBitmap();
+////                Bitmap image_fb = BitmapFactory.decodeStream(url_fb.openConnection().getInputStream());
+//                String image = decodeImage(bitmap);
+                stringMap.put("id_guest", id_guest + "");
+                stringMap.put("select", "2");
+
+                return stringMap;
+
+            }
+
+        };
+        requestQueue.add(stringRequest);
     }
 
     public void showProgressDialog() {

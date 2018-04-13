@@ -193,7 +193,7 @@ public class FragmentTomorrowHomeActivity extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put("select", "2");
+                hashMap.put("select", "1");
                 return hashMap;
             }
         };
