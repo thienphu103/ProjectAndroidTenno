@@ -38,6 +38,7 @@ public class FavoriteFoodAtivity extends AppCompatActivity {
 
     ArrayList<Favorite_Food_Setter_Getter> arrayList;
     ListView listView;
+
     Favorite_Food adapter;
     private String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/crud.php";
     private String id_guest;
