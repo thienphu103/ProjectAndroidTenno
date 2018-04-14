@@ -137,12 +137,14 @@ public class FragmentTomorrow2HomeActivity extends Fragment {
                             String TITLE = "";
                             String MEAL;
                             String ID;
+                            String IMAGE;
                             for (int i = 0; i < array.length(); i++) {
                                 object = array.getJSONObject(i);
                                 ID = object.getString("ID");
                                 MEAL = object.getString("MEAL");
                                 TITLE = object.getString("TITLE");
-                                arrayList.add(new Fragment_Setter_Getter(R.drawable.foodbanhmithit2, ID, MEAL, TITLE));
+                                IMAGE = object.getString("IMAGE");
+                                arrayList.add(new Fragment_Setter_Getter(IMAGE, ID, MEAL, TITLE));
                                 Log.d("JS0Ndata", TITLE + "");
                             }
                             Log.d("JS0NArrayyyy", array.length() + "");

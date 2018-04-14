@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.a.projectapptenno.R;
-import com.example.a.projectapptenno.Setter_Getter.Favorite_Food_Setter_Getter;
 import com.example.a.projectapptenno.Setter_Getter.Fragment_Setter_Getter;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -61,8 +61,21 @@ public class Fragment extends BaseAdapter {
         }
         viewHolder.txt_diemtam.setText(arrayList.get(position).getTxt_diemtam());
         viewHolder.txt_monan.setText(arrayList.get(position).getTxt_monan());
-        viewHolder.img_monan.setImageResource(arrayList.get(position).getImg_monan());
+//        viewHolder.img_monan.setImageResource(arrayList.get(position).getImg_monan());
+        String url = "";
+        if (!(arrayList.get(position).getImg_monan().isEmpty())) {
+            url = "" + arrayList.get(position).getImg_monan();
+        } else {
+            url = String.valueOf(R.drawable.ic_image_black_24dp);//null
+        }
+        Picasso.get()
+                .load(url)
+                .error(R.drawable.ic_image_black_24dp)//load url error
+                .placeholder(R.drawable.ic_image_black_24dp)//load url error
+                .resize(900, 506)
+                .into(viewHolder.img_monan);
         return convertView;
+
     }
     public class ViewHolder{
         TextView txt_diemtam,txt_monan;

@@ -205,12 +205,13 @@ public class LoginActivity extends AppCompatActivity implements
 
                             String userName = acct.getDisplayName().toString();
                             String idUser = acct.getId().toString();
-                            updateUI(user, userName, idUser);
+                            String imageUser = acct.getPhotoUrl().toString();
+                            updateUI(user, userName, idUser, imageUser);
                         } else {
                             // If sign in fails, display a message to the user.
 //                            Log.w(TAG, "signInWithCredential:failure", task.getException());
 //                            Snackbar.make(findViewById(R.id.activity_login), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            updateUI(null, null, null);
+                            updateUI(null, null, null, null);
                         }
 
                         // [START_EXCLUDE]
@@ -237,7 +238,7 @@ public class LoginActivity extends AppCompatActivity implements
                 new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null, null, null);
+                        updateUI(null, null, null, null);
                     }
                 });
     }
@@ -251,19 +252,19 @@ public class LoginActivity extends AppCompatActivity implements
                 new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null, null, null);
+                        updateUI(null, null, null, null);
                     }
                 });
     }
 
-    private void updateUI(FirebaseUser user, String name, String id) {
+    private void updateUI(FirebaseUser user, String name, String id, String image) {
         hideProgressDialog();
         if (user != null) {
 //            mStatusTextView.setText(getString(R.string.google_status_fmt, user.getEmail()));
 //            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-            showQuestionDialog(name, id);
+            showQuestionDialog(name, id, image);
 //            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
         } else {
 //            mStatusTextView.setText(R.string.signed_out);
@@ -329,17 +330,19 @@ public class LoginActivity extends AppCompatActivity implements
                 Log.d("successed", response.toString());
                 String name_facebook_get_data = null;
                 String id_facebook_get_data = null;
+                String url_facebook_get_data = null;
                 try {
                     name_facebook_get_data = object1.getString("first_name") + " " + object.getString("last_name");
                     id_facebook_get_data = object1.getString("id");
-//                    url_facebook_get_data=  "https://graph.facebook.com/" +object1.getString("id")+ "" + "/picture?type=large";
+
+                    url_facebook_get_data = "https://graph.facebook.com/" + object1.getString("id") + "" + "/picture?type=large";
 //                    email_facebook_get_data=object1.getString("email");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 //
                 if (name_facebook_get_data != null) {
-                    showQuestionDialog(name_facebook_get_data, id_facebook_get_data);
+                    showQuestionDialog(name_facebook_get_data, id_facebook_get_data, url_facebook_get_data);
                 }
             }
         });
@@ -443,12 +446,13 @@ public class LoginActivity extends AppCompatActivity implements
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            String image = "https://developers.google.com/experts/img/user/user-default.png";
 
-                            updateUIEmail(user, edt_email.getText().toString(),id);
+                            updateUIEmail(user, edt_email.getText().toString(), id, image);
                         } else {
                             // If sign in fails, display a message to the user.
                             showQuestionDialogError(task.getException().toString());
-                            updateUIEmail(null, null,null);
+                            updateUIEmail(null, null, null, null);
                         }
 
                         // [START_EXCLUDE]
@@ -484,10 +488,10 @@ public class LoginActivity extends AppCompatActivity implements
         return valid;
     }
 
-    private void updateUIEmail(FirebaseUser user, String email,String id) {
+    private void updateUIEmail(FirebaseUser user, String email, String id, String image) {
         hideProgressDialog();
         if (user != null) {
-            showQuestionDialog(email, id);
+            showQuestionDialog(email, id, image);
         } else {
 
         }
@@ -499,7 +503,7 @@ public class LoginActivity extends AppCompatActivity implements
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser, null, null);
+        updateUI(currentUser, null, null, null);
     }
 
     @Override
@@ -533,7 +537,7 @@ public class LoginActivity extends AppCompatActivity implements
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
                 // [START_EXCLUDE]
-                updateUI(null, null, null);
+                updateUI(null, null, null, null);
                 // [END_EXCLUDE]
             }
         }
@@ -541,10 +545,10 @@ public class LoginActivity extends AppCompatActivity implements
     }
 
 
-    public void showQuestionDialog(String NameUser, final String id_guest) {
+    public void showQuestionDialog(final String NameUser, final String id_guest, final String image) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("App");
-        builder.setMessage("Bạn có muốn đăng nhập với tài khoản: " + NameUser + "\nID: "+id_guest + " không?");
+        builder.setMessage("Bạn có muốn đăng nhập với tài khoản: " + NameUser + "\nID: " + id_guest + " không?");
         builder.setCancelable(false);
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
@@ -553,6 +557,8 @@ public class LoginActivity extends AppCompatActivity implements
                 SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("id_guest", "id" + id_guest + "");
+                editor.putString("username", NameUser + "");
+                editor.putString("image", image + "");
                 editor.commit();
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);

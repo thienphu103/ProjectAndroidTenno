@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.a.projectapptenno.ControlClass.CircleTransform;
 import com.example.a.projectapptenno.Setter_Getter.Fragment_Setter_Getter;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -45,6 +48,7 @@ public class DetailActivity extends AppCompatActivity {
     String id_food = "";
     ArrayList<Fragment_Setter_Getter> arrayList;
     private String id_guest;
+    private ImageView img_monan_details;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +97,7 @@ public class DetailActivity extends AppCompatActivity {
         txt_nguyenlieu_details = (TextView) findViewById(R.id.txt_nguyenlieu_details);
         txt_motacachlam_details = (TextView) findViewById(R.id.txt_motacachlam_details);
         txt_motacacbuoclam_details = (TextView) findViewById(R.id.txt_motacacbuoclam_details);
+        img_monan_details = (ImageView) findViewById(R.id.img_monan_details);
         btn_themvaodanhsachyeuthich_details = (Button) findViewById(R.id.btn_themvaodanhsachyeuthich_details);
 
     }
@@ -114,6 +119,7 @@ public class DetailActivity extends AppCompatActivity {
                             String MATERIAL = "";
                             String PREPARE = "";
                             String GUIDE = "";
+                            String IMAGE = "";
                             for (int i = 0; i < array.length(); i++) {
                                 object = array.getJSONObject(i);
                                 if (object.getString("ID").equals(id_food)) {
@@ -123,6 +129,7 @@ public class DetailActivity extends AppCompatActivity {
                                     MATERIAL = object.getString("MATERIAL");
                                     PREPARE = object.getString("PREPARE");
                                     GUIDE = object.getString("GUIDE");
+                                    IMAGE = object.getString("IMAGE");
                                     collapsingToolbarLayout.setTitleEnabled(true);
                                     collapsingToolbarLayout.setTitle(TITLE);
                                     txt_buaan_details.setText(MEAL);
@@ -130,6 +137,20 @@ public class DetailActivity extends AppCompatActivity {
                                     txt_nguyenlieu_details.setText(MATERIAL);
                                     txt_motacacbuoclam_details.setText(GUIDE);
                                     txt_motacachlam_details.setText(PREPARE);
+                                    String url = "";
+                                    if (!(IMAGE.isEmpty())) {
+                                        url = "" +IMAGE;
+                                    } else {
+                                        url = String.valueOf(R.drawable.ic_image_black_24dp);//null
+                                    }
+                                    Picasso.get()
+                                            .load(url)
+                                            .error(R.drawable.ic_image_black_24dp)//load url error
+                                            .placeholder(R.drawable.ic_image_black_24dp)//load url error\
+                                            .resize(900, 506)
+                                            .centerCrop()
+
+                                            .into(img_monan_details);
                                 }
                                 btn_themvaodanhsachyeuthich_details.setOnClickListener(new View.OnClickListener() {
                                     @Override

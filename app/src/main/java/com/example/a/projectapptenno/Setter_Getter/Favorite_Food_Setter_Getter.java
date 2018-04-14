@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 
 public class Favorite_Food_Setter_Getter implements Serializable {
-    private int img_monan;
+    private String img_monan;
     private String txt_diemtam;
     private String txt_monan;
     private String txt_id;
@@ -15,11 +15,11 @@ public class Favorite_Food_Setter_Getter implements Serializable {
     public Favorite_Food_Setter_Getter() {
     }
 
-    public int getImg_monan() {
+    public String getImg_monan() {
         return img_monan;
     }
 
-    public void setImg_monan(int img_monan) {
+    public void setImg_monan(String img_monan) {
         this.img_monan = img_monan;
     }
 
@@ -47,7 +47,7 @@ public class Favorite_Food_Setter_Getter implements Serializable {
         this.txt_id = txt_id;
     }
 
-    public Favorite_Food_Setter_Getter(int img_monan, String txt_diemtam, String txt_monan, String txt_id) {
+    public Favorite_Food_Setter_Getter(String img_monan, String txt_diemtam, String txt_monan, String txt_id) {
         this.txt_id=txt_id;
         this.img_monan = img_monan;
         this.txt_diemtam = txt_diemtam;

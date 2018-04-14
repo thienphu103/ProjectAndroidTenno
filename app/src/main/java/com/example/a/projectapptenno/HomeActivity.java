@@ -42,6 +42,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.a.projectapptenno.Adapter.HomeTablayoutAdapter;
+import com.example.a.projectapptenno.ControlClass.CircleTransform;
 import com.example.a.projectapptenno.FragmentHomeActivity.FragmentTodayHomeActivity;
 import com.example.a.projectapptenno.FragmentHomeActivity.FragmentTomorrow2HomeActivity;
 import com.example.a.projectapptenno.FragmentHomeActivity.FragmentTomorrowHomeActivity;
@@ -60,6 +61,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -166,6 +168,10 @@ public class HomeActivity extends AppCompatActivity
      * Time when the location was updated represented as a String.
      */
     private String mLastUpdateTime;
+    TextView textView_username;
+    ImageView imageView_avatar;
+    private String username;
+    private String image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -248,6 +254,9 @@ public class HomeActivity extends AppCompatActivity
         City = (TextView) findViewById(R.id.txt_city_home);
         Temp = (TextView) findViewById(R.id.txt_weather_home);
         Desc = (TextView) findViewById(R.id.txt_sunny_home);
+
+
+
         mTablayout.setupWithViewPager(mViewPager);
     }
 
@@ -274,6 +283,29 @@ public class HomeActivity extends AppCompatActivity
                 HomeActivity.this,
                 listTitle, listFragment);
         mViewPager.setAdapter(adapter);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("User", MODE_PRIVATE);
+        username = sharedPreferences.getString("username", null);
+        image = sharedPreferences.getString("image", null);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        textView_username = (TextView) headerView.findViewById(R.id.textView_username);
+        imageView_avatar=(ImageView) headerView.findViewById(R.id.imageView_avatar) ;
+        textView_username.setText(username);
+        String url=null;
+        if (!(image.isEmpty())) {
+            url = "" +image;
+        } else {
+            url = String.valueOf(R.drawable.ic_image_black_24dp);//null
+        }
+        Picasso.get()
+                .load(url)
+                .error(R.drawable.ic_image_black_24dp)//load url error
+                .placeholder(R.drawable.ic_image_black_24dp)//load url error\
+                .resize(200, 200)
+                .centerCrop()
+                .transform(new CircleTransform())
+                .into(imageView_avatar);
+
     }
 
     private void initEvent() {
@@ -385,13 +417,13 @@ public class HomeActivity extends AppCompatActivity
             Intent Home_FavoriteFood = new Intent(HomeActivity.this, FavoriteFoodAtivity.class);
             startActivity(Home_FavoriteFood);
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-            Intent Home_Changethepassword = new Intent(HomeActivity.this, ChangethepasswordActivity.class);
-            startActivity(Home_Changethepassword);
-
-        } else if (id == R.id.nav_slideshow) {
-            Intent Home_DevelopmentTeam = new Intent(HomeActivity.this, DevelopmentTeamActivity.class);
-            startActivity(Home_DevelopmentTeam);
+//        } else if (id == R.id.nav_gallery) {
+//            Intent Home_Changethepassword = new Intent(HomeActivity.this, ChangethepasswordActivity.class);
+//            startActivity(Home_Changethepassword);
+//
+//        } else if (id == R.id.nav_slideshow) {
+//            Intent Home_DevelopmentTeam = new Intent(HomeActivity.this, DevelopmentTeamActivity.class);
+//            startActivity(Home_DevelopmentTeam);
         } else if (id == R.id.nav_manage) {
             Intent Home_Login = new Intent(HomeActivity.this, LoginActivity.class);
             startActivity(Home_Login);
@@ -520,6 +552,7 @@ public class HomeActivity extends AppCompatActivity
      * These settings are appropriate for mapping applications that show real-time location
      * updates.
      */
+    @SuppressLint("RestrictedApi")
     private void createLocationRequest() {
         mLocationRequest = new LocationRequest();
 

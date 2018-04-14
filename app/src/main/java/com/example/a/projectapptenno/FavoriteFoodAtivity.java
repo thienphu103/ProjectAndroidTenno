@@ -50,7 +50,6 @@ public class FavoriteFoodAtivity extends AppCompatActivity {
         initControl();
         initData();
         initEvent();
-        getData();
         initDisplay();
     }
 
@@ -113,70 +112,6 @@ public class FavoriteFoodAtivity extends AppCompatActivity {
     }
 
 
-    private void getData() {
-        Toast.makeText(getApplicationContext(), "loading database ", Toast.LENGTH_SHORT).show();
-        final RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        final StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_CALL_API_GET_DATA,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-
-                            JSONArray array = new JSONArray(response);
-                            JSONObject object = null;
-                            String ID_GUEST = "";
-                            String ID_FOOD;
-                            String ID;
-                            for (int i = 0; i < array.length(); i++) {
-                                object = array.getJSONObject(i);
-                                ID_FOOD = object.getString("ID_FOOD");
-                                arrayListString.add(ID_FOOD);
-                                Log.d("JS0Ndata", ID_FOOD + "");
-                            }
-                            Log.d("JS0NArrayyyyFood", array.length() + "");
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "Exception " + e, Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-                }, new Response.ErrorListener()
-
-        {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                Toast.makeText(getApplicationContext(), "" + error, Toast.LENGTH_SHORT).show();
-                Log.d("error", error + "");
-//                View view = view_find.findViewById(R.id.fragmelayout_find);
-//                final Snackbar snackbar = Snackbar.make(view, "Không Có Kết Nối Internet.", Snackbar.LENGTH_INDEFINITE);
-//
-//                // Set an action on it, and a handler
-//                snackbar.setAction("Thử Lại", new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        initDisplay("");
-//
-//                    }
-//                });
-//
-//                snackbar.show();
-            }
-        })
-
-        {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put("id_guest", id_guest);
-                hashMap.put("select", "4");
-                return hashMap;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
-
     private void initDisplay() {
         Toast.makeText(getApplicationContext(), "loading database ", Toast.LENGTH_SHORT).show();
         final RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -192,16 +127,18 @@ public class FavoriteFoodAtivity extends AppCompatActivity {
                             String MEAL;
                             String ID;
                             String ID_FOOD = null;
-                                for (int i = 0; i < array.length(); i++) {
-                                    object = array.getJSONObject(i);
-                                    if (object.getString("ID").equals(ID_FOOD)) {
-                                        ID = object.getString("ID");
-                                        MEAL = object.getString("MEAL");
-                                        TITLE = object.getString("TITLE");
-                                        arrayList.add(new Favorite_Food_Setter_Getter(R.drawable.foodbanhmithit2, MEAL, TITLE, ID));
-                                    }
-                                    Log.d("JS0Ndata", TITLE + "");
-                                }
+                            String IMAGE;
+                            for (int i = 0; i < array.length(); i++) {
+                                object = array.getJSONObject(i);
+
+                                ID = object.getString("ID");
+                                MEAL = object.getString("MEAL");
+                                TITLE = object.getString("TITLE");
+                                IMAGE = object.getString("IMAGE");
+                                arrayList.add(new Favorite_Food_Setter_Getter(IMAGE, MEAL, TITLE, ID));
+
+                                Log.d("JS0Ndata", TITLE + "");
+                            }
                             Log.d("JS0NArrayyyy", array.length() + "");
                             adapter = new Favorite_Food(arrayList, FavoriteFoodAtivity.this);
                             if (arrayList.size() > 0) {
@@ -253,7 +190,9 @@ public class FavoriteFoodAtivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put("select", "1");
+
+                hashMap.put("select", "4");
+                hashMap.put("id_guest", id_guest);
                 return hashMap;
             }
         };
