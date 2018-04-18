@@ -1,12 +1,16 @@
 package com.example.a.projectapptenno;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -23,7 +27,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.a.projectapptenno.ControlClass.CircleTransform;
 import com.example.a.projectapptenno.Setter_Getter.Fragment_Setter_Getter;
 import com.squareup.picasso.Picasso;
 
@@ -80,7 +83,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void initData() {
-
+        getData();
 //        setSupportActionBar(toolbar);
 //        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
 //        collapsingToolbarLayout.setTitle(getResources().getString(R.string.txt_diemtam));
@@ -102,8 +105,74 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
+    private void getData() {
+        Toast.makeText(getApplicationContext(), "loading database ", Toast.LENGTH_SHORT).show();
+        final RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        final StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_CALL_API_GET_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            arrayList = new ArrayList<>();
+                            JSONArray array = new JSONArray(response);
+                            JSONObject object = null;
+                            String ID_FOOD = null;
+                            String IMAGE;
+                            for (int i = 0; i < array.length(); i++) {
+                                object = array.getJSONObject(i);
+                                ID_FOOD = object.getString("ID_FOOD");
+                                if (ID_FOOD.equals(id_food)) {
+                                    btn_themvaodanhsachyeuthich_details.setText("Món ăn đã có trong yêu thích");
+                                    btn_themvaodanhsachyeuthich_details.setEnabled(false);
+                                    btn_themvaodanhsachyeuthich_details.setBackgroundColor(Color.GRAY);
+                                }
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Exception " + e, Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                }, new Response.ErrorListener()
+
+        {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getApplicationContext(), "" + error, Toast.LENGTH_SHORT).show();
+                Log.d("error", error + "");
+//                View view = view_find.findViewById(R.id.fragmelayout_find);
+//                final Snackbar snackbar = Snackbar.make(view, "Không Có Kết Nối Internet.", Snackbar.LENGTH_INDEFINITE);
+//
+//                // Set an action on it, and a handler
+//                snackbar.setAction("Thử Lại", new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        initDisplay("");
+//
+//                    }
+//                });
+//
+//                snackbar.show();
+            }
+        })
+
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> hashMap = new HashMap<>();
+                hashMap.put("select", "4");
+                hashMap.put("id_guest", id_guest);
+                return hashMap;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
     private void initDisplay() {
         Toast.makeText(getApplicationContext(), "loading database ", Toast.LENGTH_SHORT).show();
+        getData();
         final RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         final StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_CALL_API_GET_DATA,
                 new Response.Listener<String>() {
@@ -139,7 +208,7 @@ public class DetailActivity extends AppCompatActivity {
                                     txt_motacachlam_details.setText(PREPARE);
                                     String url = "";
                                     if (!(IMAGE.isEmpty())) {
-                                        url = "" +IMAGE;
+                                        url = "" + IMAGE;
                                     } else {
                                         url = String.valueOf(R.drawable.ic_image_black_24dp);//null
                                     }
@@ -155,8 +224,7 @@ public class DetailActivity extends AppCompatActivity {
                                 btn_themvaodanhsachyeuthich_details.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        upData(id_guest,id_food);
-                                        Toast.makeText(getApplicationContext(), "Thêm món ăn " + collapsingToolbarLayout.getTitle() + " vào danh sách yêu thích...", Toast.LENGTH_LONG).show();
+                                    showQuestion();
                                     }
                                 });
                             }
@@ -202,6 +270,36 @@ public class DetailActivity extends AppCompatActivity {
         };
         requestQueue.add(stringRequest);
     }
+
+    public void showQuestion() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("App");
+        builder.setMessage("Bạn có thêm món ăn:"+collapsingToolbarLayout.getTitle()+" vào danh sách yêu thích không");
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                upData(id_guest, id_food);
+                btn_themvaodanhsachyeuthich_details.setText("Món ăn đã có trong yêu thích");
+                btn_themvaodanhsachyeuthich_details.setEnabled(false);
+                btn_themvaodanhsachyeuthich_details.setBackgroundColor(Color.GRAY);
+                getData();
+
+                Toast.makeText(getApplicationContext(), "Thêm món ăn " + collapsingToolbarLayout.getTitle() + " vào danh sách yêu thích...", Toast.LENGTH_LONG).show();
+
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+
     public void upData(final String id_guest, final String id_food) {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_CALL_API_GET_DATA, new Response.Listener<String>() {

@@ -31,6 +31,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.a.projectapptenno.Admin.AddFoodAdmin;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -447,8 +448,8 @@ public class LoginActivity extends AppCompatActivity implements
                             FirebaseUser user = mAuth.getCurrentUser();
                             String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             String image = "https://developers.google.com/experts/img/user/user-default.png";
-
                             updateUIEmail(user, edt_email.getText().toString(), id, image);
+
                         } else {
                             // If sign in fails, display a message to the user.
                             showQuestionDialogError(task.getException().toString());
@@ -491,9 +492,12 @@ public class LoginActivity extends AppCompatActivity implements
     private void updateUIEmail(FirebaseUser user, String email, String id, String image) {
         hideProgressDialog();
         if (user != null) {
-            showQuestionDialog(email, id, image);
-        } else {
+            if(email.equals("admin@gmail.com")){
+                showQuestionDialogAdmin(email, id, image);
+            }
 
+        } else {
+            showQuestionDialog(email, id, image);
         }
     }
 
@@ -544,7 +548,6 @@ public class LoginActivity extends AppCompatActivity implements
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-
     public void showQuestionDialog(final String NameUser, final String id_guest, final String image) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("App");
@@ -561,6 +564,36 @@ public class LoginActivity extends AppCompatActivity implements
                 editor.putString("image", image + "");
                 editor.commit();
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+    public void showQuestionDialogAdmin(final String NameUser, final String id_guest, final String image) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("App");
+        builder.setMessage("Admin Login?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+//                upData("id" + id_guest);
+//                SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putString("id_guest", "id" + id_guest + "");
+//                editor.putString("username", NameUser + "");
+//                editor.putString("image", image + "");
+//                editor.commit();
+                Intent intent = new Intent(LoginActivity.this, AddFoodAdmin.class);
                 startActivity(intent);
                 finish();
             }
