@@ -42,6 +42,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.a.projectapptenno.Adapter.HomeTablayoutAdapter;
+import com.example.a.projectapptenno.Admin.AddFoodAdmin;
 import com.example.a.projectapptenno.ControlClass.CircleTransform;
 import com.example.a.projectapptenno.FragmentHomeActivity.FragmentTodayHomeActivity;
 import com.example.a.projectapptenno.FragmentHomeActivity.FragmentTomorrow2HomeActivity;
@@ -412,8 +413,12 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        if(id == R.id.nan_addmonan){
+            Intent Home_Addfood = new Intent(HomeActivity.this, AddFoodAdmin.class);
+            startActivity(Home_Addfood);
 
-        if (id == R.id.nav_camera) {
+        }
+        else if (id == R.id.nav_camera) {
             Intent Home_FavoriteFood = new Intent(HomeActivity.this, FavoriteFoodAtivity.class);
             startActivity(Home_FavoriteFood);
             // Handle the camera action
@@ -424,7 +429,9 @@ public class HomeActivity extends AppCompatActivity
 //        } else if (id == R.id.nav_slideshow) {
 //            Intent Home_DevelopmentTeam = new Intent(HomeActivity.this, DevelopmentTeamActivity.class);
 //            startActivity(Home_DevelopmentTeam);
-        } else if (id == R.id.nav_manage) {
+    }
+
+        else if (id == R.id.nav_manage) {
             Intent Home_Login = new Intent(HomeActivity.this, LoginActivity.class);
             startActivity(Home_Login);
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.AddFoodAdmin"
+    android:background="#fff"
+    >
+    <include
+        android:id="@+id/toobar_thefood"
+        layout="@layout/toobar_thefood"
+        />
+    <Button
+        android:layout_below="@id/toobar_thefood"
+        android:background="@drawable/button_custom_xacnhan_changethepassword"
+        android:layout_weight="1"
+        android:textColor="#fff"
+        android:id="@+id/btn_add"
+        android:layout_margin="20dp"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:text="Thêm món ăn"
+        android:layout_width="match_parent"
+        android:layout_height="49dp" />
+    <ListView
+        android:divider="@null"
+        android:dividerHeight="20dp"
+        android:id="@+id/lst_addadmin"
+        android:layout_below="@+id/btn_add"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+</RelativeLayout>

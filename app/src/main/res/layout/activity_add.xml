@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Admin.Add">
+    <include
+        layout="@layout/toobar_add"
+        android:id="@+id/toolbar_add"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/toolbar_add"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="60dp"
+                    android:text="Hình Ảnh"
+                    android:textColor="#95989A"
+                    android:textSize="13sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#EEEEEE">
+
+                    <LinearLayout
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+
+                        android:orientation="vertical"
+
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="@dimen/dimens_marginright_left_loginactivity"
+                                android:layout_marginRight="@dimen/dimens_marginright_left_loginactivity"
+                                android:layout_marginTop="@dimen/dimens_margintop_loginactivity"
+                                android:gravity="center_horizontal"
+                                android:paddingLeft="18dp"
+                                android:paddingRight="18dp"
+                                android:text="Chọn ít nhất 1 hình ảnh minh họa cho sản phẩm này để thu hút khách hàng hơn"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/img_view_photo_nhaphang"
+                            android:layout_width="67dp"
+                            android:layout_height="67dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/dimens_margintop_loginactivity"
+                            android:src="@drawable/img" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <Button
+                                android:id="@+id/btn_gallary_nhaphang"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:layout_marginLeft="@dimen/dimens_marginright_left_loginactivity"
+                                android:layout_marginRight="@dimen/dimens_marginright_left_loginactivity"
+                                android:layout_marginTop="@dimen/dimens_margintop_loginactivity"
+                                android:layout_weight="1"
+                                android:background="@drawable/edittext_custom_loginactivity"
+                                android:drawableLeft="@drawable/gale"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/dimens_paddingleft_loginactivity"
+                                android:text="Chọn từ thư viện"
+                                android:textAllCaps="false"
+                                android:textColor="#95989A"
+                                android:textSize="10sp" />
+
+                            <Button
+                                android:id="@+id/btn_camera_nhaphang"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:layout_marginLeft="@dimen/dimens_marginright_left_loginactivity"
+                                android:layout_marginRight="@dimen/dimens_marginright_left_loginactivity"
+                                android:layout_marginTop="@dimen/dimens_margintop_loginactivity"
+                                android:layout_weight="1"
+                                android:background="@drawable/edittext_custom_loginactivity"
+                                android:drawableLeft="@drawable/pho"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/dimens_paddingleft_loginactivity"
+                                android:text="Chụp một hình"
+                                android:textAllCaps="false"
+                                android:textColor="#95989A"
+                                android:textSize="10sp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Tên sản phẩm"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edt_ten_sp_nhaphang"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#EEEEEE"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="15sp" />
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Đơn giá"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edt_gia_nhaphang"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#EEEEEE"
+                    android:inputType="number"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Số lượng"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edt_soluong_nhaphang"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#EEEEEE"
+                    android:inputType="number"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Ngày sản xuất (nếu có)"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edt_ngaysanxuat_nhaphang"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#EEEEEE"
+                    android:inputType="date"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Hạn sử dụng (nếu có)"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edt_hansudung__nhaphang"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#EEEEEE"
+                    android:inputType="date"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="15sp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Kích cỡ (nếu có)"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edt_kichco_nhaphang"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#EEEEEE"
+                    android:inputType="number"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="15sp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Mô tả"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edt_mota_nhaphang"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#EEEEEE"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="15sp" />
+
+                <Button
+
+                    android:id="@+id/btn_nhaphang_nhaphang"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="20dp"
+                    android:background="#1ABC9C"
+                    android:text="Xác nhận nhập hàng"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
