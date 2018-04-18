@@ -23,10 +23,11 @@ public class Favorite_Food extends BaseAdapter {
     ArrayList<Favorite_Food_Setter_Getter> arrayList;
     Context context;
     LayoutInflater inflater;
-
-    public Favorite_Food(ArrayList<Favorite_Food_Setter_Getter> arrayList, Context context) {
+    View.OnClickListener click;
+    public Favorite_Food(ArrayList<Favorite_Food_Setter_Getter> arrayList, Context context,View.OnClickListener click) {
         this.arrayList = arrayList;
         this.context = context;
+        this.click = click;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -46,7 +47,7 @@ public class Favorite_Food extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if (convertView == null) {
             viewHolder = new ViewHolder();
@@ -54,6 +55,7 @@ public class Favorite_Food extends BaseAdapter {
             viewHolder.txt_diemtam = (TextView) convertView.findViewById(R.id.txt_diemtam_favoritefood);
             viewHolder.txt_monan = (TextView) convertView.findViewById(R.id.txt_monanyeuthich_favoritefood);
             viewHolder.img_monan = (ImageView) convertView.findViewById(R.id.img_lst_favotitefood);
+            viewHolder.img_cancel = (ImageView) convertView.findViewById(R.id.img_cancel_favotitefood);
             convertView.setTag(viewHolder);
 
         } else {
@@ -61,6 +63,13 @@ public class Favorite_Food extends BaseAdapter {
         }
         viewHolder.txt_diemtam.setText(arrayList.get(position).getTxt_diemtam());
         viewHolder.txt_monan.setText(arrayList.get(position).getTxt_monan());
+        viewHolder.img_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setTag(new Integer(position));
+                click.onClick(v);
+            }
+        });
 //        viewHolder.img_monan.setImageResource(arrayList.get(position).getImg_monan());
         String url = "";
         if (!(arrayList.get(position).getImg_monan().isEmpty())) {
@@ -78,7 +87,7 @@ public class Favorite_Food extends BaseAdapter {
     }
     public class ViewHolder{
         TextView txt_diemtam,txt_monan;
-        ImageView img_monan;
+        ImageView img_monan,img_cancel;
     }
     @Nullable
     @Override

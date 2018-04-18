@@ -28,7 +28,6 @@
         <activity android:name=".FavoriteFoodAtivity" />
         <activity android:name=".ChangethepasswordActivity" />
         <activity android:name=".DevelopmentTeamActivity" />
-        <activity android:name=".HomeTablayout" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"

@@ -35,14 +35,14 @@ import java.util.Map;
 public class FavoriteFoodAtivity extends AppCompatActivity {
     ImageView img_backarrow;
     ArrayList<String> arrayListString;
-
+    View.OnClickListener click;
     ArrayList<Favorite_Food_Setter_Getter> arrayList;
     ListView listView;
 
     Favorite_Food adapter;
     private String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/crud.php";
     private String id_guest;
-
+    int vitri = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +56,7 @@ public class FavoriteFoodAtivity extends AppCompatActivity {
     private void initControl() {
         img_backarrow = (ImageView) findViewById(R.id.img_backarrow);
         listView = (ListView) findViewById(R.id.lst_favoritefood);
+
     }
 
     private void initData() {
@@ -66,6 +67,13 @@ public class FavoriteFoodAtivity extends AppCompatActivity {
                 startActivity(Favorite_Home);
             }
         });
+        click = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer integer = (Integer) v.getTag();
+                Toast.makeText(FavoriteFoodAtivity.this,""+integer,Toast.LENGTH_SHORT).show();
+            }
+        };
         arrayListString = new ArrayList<>();
 //        arrayList = new ArrayList<>();
 //        arrayList.add(new Favorite_Food_Setter_Getter(R.drawable.foodbanhmithit2,
@@ -140,7 +148,7 @@ public class FavoriteFoodAtivity extends AppCompatActivity {
                                 Log.d("JS0Ndata", TITLE + "");
                             }
                             Log.d("JS0NArrayyyy", array.length() + "");
-                            adapter = new Favorite_Food(arrayList, FavoriteFoodAtivity.this);
+                            adapter = new Favorite_Food(arrayList, FavoriteFoodAtivity.this,click);
                             if (arrayList.size() > 0) {
                                 listView.setAdapter(adapter);
                             }
