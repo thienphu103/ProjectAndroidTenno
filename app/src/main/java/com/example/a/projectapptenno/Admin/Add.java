@@ -1,9 +1,13 @@
 package com.example.a.projectapptenno.Admin;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -62,6 +66,7 @@ public class Add extends AppCompatActivity {
     private int index_listview_sp;
     private String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/crud.php";
     private String id_update;
+    private int SELECT_FILE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,9 +157,10 @@ public class Add extends AppCompatActivity {
                                     "Camera permission is available (API: " + Build.VERSION.SDK_INT + "). Starting preview.",
                                     Snackbar.LENGTH_SHORT).show();
 
-                            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            if (takePictureIntent.resolveActivity(getApplicationContext().getPackageManager()) != null) {
-                                startActivityForResult(takePictureIntent, CAMERA_REQUEST_MAX);
+                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                            if (intent.resolveActivity(getApplicationContext().getPackageManager()) != null) {
+                                startActivityForResult(intent, CAMERA_REQUEST);
                             }
                         } else {
                             // Permission is missing and must be requested.
@@ -165,25 +171,6 @@ public class Add extends AppCompatActivity {
                         startActivityForResult(takePictureIntent, CAMERA_REQUEST);
                     }
 
-
-//                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
-//                            == PackageManager.PERMISSION_GRANTED) {
-//                        // Permission is already available, start camera preview
-//                        Snackbar.make(view_nhap_hang,
-//                                "Camera permission is available. Starting preview.",
-//                                Snackbar.LENGTH_SHORT).show();
-//
-//                        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-//                            startActivityForResult(takePictureIntent, CAMERA_REQUEST);
-//                        }
-//                    } else {
-//                        // Permission is missing and must be requested.
-//                        requestCameraPermission();
-//                    }
-
-
-                    // use standard intent to capture an image
                 } catch (ActivityNotFoundException ex) {
                     ex.printStackTrace();
                 }
@@ -193,15 +180,9 @@ public class Add extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent imageDownload = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                imageDownload.putExtra("crop", "true");
-                imageDownload.putExtra("aspectX", 4);
-                imageDownload.putExtra("aspectY", 3);
-                imageDownload.putExtra("outputX", 1280);
-                imageDownload.putExtra("outputY", 720);
-                imageDownload.putExtra("return-data", true);
-                startActivityForResult(imageDownload, 2);
-
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent.setType("image/*");
+                startActivityForResult(intent, SELECT_FILE);
             }
         });
 
@@ -213,32 +194,6 @@ public class Add extends AppCompatActivity {
 
     }
 
-    private void performCrop() {
-        // take care of exceptions
-        try {
-            // call the standard crop action intent (the user device may not
-            // support it)
-            Intent cropIntent = new Intent("com.android.camera.action.CROP");
-            // indicate image type and Uri
-            cropIntent.setDataAndType(picUri, "image/*");
-            // set crop properties
-            cropIntent.putExtra("crop", "true");
-            // indicate aspect of desired crop
-            cropIntent.putExtra("aspectX", 4);
-            cropIntent.putExtra("aspectY", 3);
-            // indicate output X and Y
-            cropIntent.putExtra("outputX", 1280);
-            cropIntent.putExtra("outputY", 720);
-            // retrieve data on return
-            cropIntent.putExtra("return-data", true);
-            // start the activity - we handle returning in onActivityResult
-            startActivityForResult(cropIntent, PIC_CROP);
-        }
-        // respond to users whose devices do not support the crop action
-        catch (ActivityNotFoundException anfe) {
-
-        }
-    }
 
     public void upData() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -351,6 +306,7 @@ public class Add extends AppCompatActivity {
             img_view_photo_nhaphang.setImageResource(R.drawable.img);
         }
     }
+
     private void initDisplay(final String id_update) {
         Toast.makeText(getApplicationContext(), "loading database ", Toast.LENGTH_SHORT).show();
         final RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -454,41 +410,100 @@ public class Add extends AppCompatActivity {
         return encodeImage;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
+    private void SelectImage() {
 
-            Bundle extras = data.getExtras();
-            Bitmap image = extras.getParcelable("data");
-            img_view_photo_nhaphang.setImageBitmap(image);
+        final CharSequence[] items = {"Camera", "Gallery", "Cancel"};
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(Add.this);
+        builder.setTitle("Add Image");
+
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (items[i].equals("Camera")) {
+
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, CAMERA_REQUEST);
+
+                } else if (items[i].equals("Gallery")) {
+
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intent.setType("image/*");
+                    startActivityForResult(intent, SELECT_FILE);
+
+                } else if (items[i].equals("Cancel")) {
+                    dialogInterface.dismiss();
+                }
+            }
+        });
+        builder.show();
+
+    }
+
+    private void performCrop() {
+        // take care of exceptions
+        try {
+            // call the standard crop action intent (the user device may not
+            // support it)
+            Intent cropIntent = new Intent("com.android.camera.action.CROP");
+            // indicate image type and Uri
+            cropIntent.setDataAndType(picUri, "image/*");
+            // set crop properties
+            cropIntent.putExtra("crop", "true");
+            // indicate aspect of desired crop
+            cropIntent.putExtra("scale", "true");
+            cropIntent.putExtra("aspectX", 3);
+            cropIntent.putExtra("aspectY", 2);
+            // indicate output X and Y
+            cropIntent.putExtra("outputX", 1280);
+            cropIntent.putExtra("outputY", 720);
+            // retrieve data on return
+            cropIntent.putExtra("return-data", true);
+            // start the activity - we handle returning in onActivityResult
+            startActivityForResult(cropIntent, PIC_CROP);
         }
-        if (resultCode == RESULT_OK) {
-            if (requestCode == CAMERA_REQUEST) {
-                // get the Uri for the captured image
-                picUri = data.getData();
-                performCrop();
-            } else if (requestCode == CAMERA_REQUEST_MAX) {
-                Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
-                img_view_photo_nhaphang.setImageBitmap(imageBitmap);
-
-            }
-
-            // user is returning from cropping the image
-            else if (requestCode == PIC_CROP) {
-                // get the returned data
-                Bundle extras = data.getExtras();
-                // get the cropped bitmap
-                Bitmap thePic = extras.getParcelable("data");
-                img_view_photo_nhaphang.setImageBitmap(thePic);
-
-            }
-
+        // respond to users whose devices do not support the crop action
+        catch (ActivityNotFoundException anfe) {
 
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK) {
+
+            if (requestCode == SELECT_FILE) {
+                Uri selectedImageUri = data.getData();
+                img_view_photo_nhaphang.setImageURI(selectedImageUri);
+            } else if (resultCode == RESULT_OK) {
+                if (requestCode == CAMERA_REQUEST) {
+                    // get the Uri for the captured image
+                    picUri = data.getData();
+                    performCrop();
+                } else if (requestCode == CAMERA_REQUEST_MAX) {
+                    Bundle extras = data.getExtras();
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    img_view_photo_nhaphang.setImageBitmap(imageBitmap);
+                }
+//
+//                // user is returning from cropping the image
+//                else if (requestCode == PIC_CROP) {
+//                    // get the returned data
+//                    Bundle extras = data.getExtras();
+//                    // get the cropped bitmap
+//                    Bitmap thePic = extras.getParcelable("data");
+//                    img_view_photo_nhaphang.setImageBitmap(thePic);
+//                }
+
+
+            }
+
+        }
+    }
+
 
     private void requestCameraPermission() {
         // Permission has not been granted and must be requested.

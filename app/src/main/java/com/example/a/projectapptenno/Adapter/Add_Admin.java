@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.a.projectapptenno.R;
 import com.example.a.projectapptenno.Setter_Getter.Favorite_Food_Setter_Getter;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -50,6 +51,7 @@ public class Add_Admin extends BaseAdapter {
             convertView = inflater.inflate(R.layout.listview_custom_add, null);
             viewHolder.txt_diemtam = (TextView) convertView.findViewById(R.id.txt_diemtam_add);
             viewHolder.txt_monan = (TextView) convertView.findViewById(R.id.txt_monanyeuthich_add);
+            viewHolder.img_bg=(ImageView) convertView.findViewById(R.id.img_lst_add);
             viewHolder.img_cancel=(ImageView) convertView.findViewById(R.id.img_cancel_add);
             viewHolder.img_update=(ImageView) convertView.findViewById(R.id.img_edit_add);
             convertView.setTag(viewHolder);
@@ -73,7 +75,19 @@ public class Add_Admin extends BaseAdapter {
                 click2.onClick(v);
             }
         });
+        String url = "";
+        if (!(arrayList.get(position).getImg_monan().isEmpty())) {
+            url = "http://namtnps06077.hol.es/" +  arrayList.get(position).getImg_monan();
+        } else {
+            url = String.valueOf(R.drawable.ic_image_black_24dp);//null
+        }
+        Picasso.get()
+                .load(url)
+                .error(R.drawable.ic_image_black_24dp)//load url error
+                .placeholder(R.drawable.ic_image_black_24dp)//load url error
+                .resize(900, 506)
 
+                .into(viewHolder.img_bg);
         return convertView;
     }
 
@@ -84,6 +98,6 @@ public class Add_Admin extends BaseAdapter {
     }
     public class ViewHolder{
         TextView txt_diemtam,txt_monan;
-        ImageView img_monan,img_cancel,img_update;
+        ImageView img_monan,img_cancel,img_update,img_bg;
     }
 }

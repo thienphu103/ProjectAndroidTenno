@@ -74,8 +74,8 @@ public class AddFoodAdmin extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.commit();
-                Intent Add_Add = new Intent(AddFoodAdmin.this, Add.class);
-                startActivity(Add_Add);
+                Intent intent = new Intent(AddFoodAdmin.this, Add.class);
+                startActivity(intent);
 
             }
         });
