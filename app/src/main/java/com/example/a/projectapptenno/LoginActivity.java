@@ -492,11 +492,11 @@ public class LoginActivity extends AppCompatActivity implements
     private void updateUIEmail(FirebaseUser user, String email, String id, String image) {
         hideProgressDialog();
         if (user != null) {
-            if(email.equals("admin@gmail.com")){
-                showQuestionDialogAdmin(email, id, image);
-            }
-
-        } else {
+//            if(email.equals("admin@gmail.com")){
+//                showQuestionDialogAdmin(email, id, image);
+//            }
+//
+//        } else {
             showQuestionDialog(email, id, image);
         }
     }
