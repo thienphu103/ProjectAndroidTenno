@@ -8,7 +8,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/tenno_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="sensorPortrait"
@@ -41,7 +41,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".Admin.AddFoodAdmin" />
-        <activity android:name=".Admin.Add"></activity>
+        <activity android:name=".Admin.Add" />
+        <activity android:name=".Admin.Account_Admin"></activity>
     </application>
 
 </manifest>

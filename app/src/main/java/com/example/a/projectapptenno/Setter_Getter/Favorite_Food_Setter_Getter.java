@@ -11,6 +11,44 @@ public class Favorite_Food_Setter_Getter implements Serializable {
     private String txt_diemtam;
     private String txt_monan;
     private String txt_id;
+    private String img_acount;
+    private String dong1_acount;
+    private String dong2_acount;
+    private String dong3_acount;
+
+
+
+    public String getImg_acount() {
+        return img_acount;
+    }
+
+    public void setImg_acount(String img_acount) {
+        this.img_acount = img_acount;
+    }
+
+    public String getDong1_acount() {
+        return dong1_acount;
+    }
+
+    public void setDong1_acount(String dong1_acount) {
+        this.dong1_acount = dong1_acount;
+    }
+
+    public String getDong2_acount() {
+        return dong2_acount;
+    }
+
+    public void setDong2_acount(String dong2_acount) {
+        this.dong2_acount = dong2_acount;
+    }
+
+    public String getDong3_acount() {
+        return dong3_acount;
+    }
+
+    public void setDong3_acount(String dong3_acount) {
+        this.dong3_acount = dong3_acount;
+    }
 
     public Favorite_Food_Setter_Getter(int foodbanhmithit2, String string, String bánh_mì_thịt) {
     }
@@ -54,7 +92,13 @@ public class Favorite_Food_Setter_Getter implements Serializable {
         this.txt_monan = txt_monan;
     }
 
-    public Favorite_Food_Setter_Getter( String txt_diemtam, String txt_monan) {
+    public Favorite_Food_Setter_Getter(String dong1_acount, String dong2_acount, String dong3_acount) {
+        this.dong1_acount = dong1_acount;
+        this.dong2_acount = dong2_acount;
+        this.dong3_acount = dong3_acount;
+    }
+
+    public Favorite_Food_Setter_Getter(String txt_diemtam, String txt_monan) {
         this.txt_diemtam = txt_diemtam;
         this.txt_monan = txt_monan;
     }

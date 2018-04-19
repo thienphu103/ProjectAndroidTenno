@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/img_acount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/acount2"
+            />
+        <TextView
+            android:text="Dòng 1"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:id="@+id/txt_dong1"
+            android:layout_toRightOf="@id/img_acount"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Dòng 2"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:id="@+id/txt_dong2"
+            android:layout_below="@id/txt_dong1"
+            android:layout_toRightOf="@id/img_acount"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Dòng 3"
+            android:layout_below="@id/txt_dong2"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:id="@+id/txt_dong3"
+            android:layout_toRightOf="@id/img_acount"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/key"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:id="@+id/img_edit_acount"
+            />
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/delete"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/img_cancel_acount"
+            />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

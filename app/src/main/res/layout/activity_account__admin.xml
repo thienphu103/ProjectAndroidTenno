@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.Account_Admin">
+    <include
+        layout="@layout/toobar_acount"
+        android:id="@+id/toolbar_acount"
+        />
+    <ListView
+        android:padding="10dp"
+        android:divider="@null"
+        android:dividerHeight="20dp"
+        android:id="@+id/lst_acount"
+        android:layout_below="@+id/toolbar_acount"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+</RelativeLayout>

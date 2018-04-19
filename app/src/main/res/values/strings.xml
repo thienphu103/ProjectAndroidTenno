@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProjectAppTenno</string>
+    <string name="app_name">Tenno</string>
     <string name="facebook_app_id">256254391542777</string>
     <string name="ext_user_login">Email or phone number</string>
     <string name="ext_password_login">Password</string>

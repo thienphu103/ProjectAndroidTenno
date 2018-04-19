@@ -42,6 +42,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.a.projectapptenno.Adapter.HomeTablayoutAdapter;
+import com.example.a.projectapptenno.Admin.Account_Admin;
 import com.example.a.projectapptenno.Admin.AddFoodAdmin;
 import com.example.a.projectapptenno.ControlClass.CircleTransform;
 import com.example.a.projectapptenno.FragmentHomeActivity.FragmentTodayHomeActivity;
@@ -417,7 +418,11 @@ public class HomeActivity extends AppCompatActivity
             Intent Home_Addfood = new Intent(HomeActivity.this, AddFoodAdmin.class);
             startActivity(Home_Addfood);
 
+        }else if(id == R.id.nan_acount){
+            Intent Home_Acount = new Intent(HomeActivity.this, Account_Admin.class);
+            startActivity(Home_Acount);
         }
+
         else if (id == R.id.nav_camera) {
             Intent Home_FavoriteFood = new Intent(HomeActivity.this, FavoriteFoodAtivity.class);
             startActivity(Home_FavoriteFood);

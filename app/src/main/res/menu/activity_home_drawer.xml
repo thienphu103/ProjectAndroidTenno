@@ -5,9 +5,14 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nan_acount"
+            android:title="Quản Lý Tài Khoản"
+            android:icon="@drawable/account"
+            />
+        <item
             android:id="@+id/nan_addmonan"
             android:title="Các Món Ăn"
-            android:icon="@drawable/bounds4"
+            android:icon="@drawable/thefood"
             />
         <item
             android:id="@+id/nav_camera"

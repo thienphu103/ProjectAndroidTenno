@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ProjectAppTenno</string>
+    <string name="app_name">Tenno</string>
     <string name="ext_user_login">Email hoặc số điện thoại</string>
     <string name="ext_password_login">Mật khẩu</string>
     <string name="btn_login_login">Đăng nhập</string>
