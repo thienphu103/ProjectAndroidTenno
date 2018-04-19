@@ -64,7 +64,7 @@ public class Fragment extends BaseAdapter {
 //        viewHolder.img_monan.setImageResource(arrayList.get(position).getImg_monan());
         String url = "";
         if (!(arrayList.get(position).getImg_monan().isEmpty())) {
-            url = "" + arrayList.get(position).getImg_monan();
+            url = "http://namtnps06077.hol.es/" +  arrayList.get(position).getImg_monan();
         } else {
             url = String.valueOf(R.drawable.ic_image_black_24dp);//null
         }

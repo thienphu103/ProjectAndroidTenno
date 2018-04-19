@@ -492,12 +492,11 @@ public class LoginActivity extends AppCompatActivity implements
     private void updateUIEmail(FirebaseUser user, String email, String id, String image) {
         hideProgressDialog();
         if (user != null) {
-//            if(email.equals("admin@gmail.com")){
-//                showQuestionDialogAdmin(email, id, image);
-//            }
-//
-//        } else {
-            showQuestionDialog(email, id, image);
+            if (email.equals("admin@gmail.com")) {
+                showQuestionDialogAdmin(email, id, image);
+            } else {
+                showQuestionDialog(email, id, image);
+            }
         }
     }
 
@@ -578,22 +577,23 @@ public class LoginActivity extends AppCompatActivity implements
         alertDialog.show();
 
     }
+
     public void showQuestionDialogAdmin(final String NameUser, final String id_guest, final String image) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("App");
-        builder.setMessage("Admin Login?");
+        builder.setMessage("Admin Login?"+"\nID: " + id_guest );
         builder.setCancelable(false);
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-//                upData("id" + id_guest);
-//                SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
-//                SharedPreferences.Editor editor = sharedPreferences.edit();
-//                editor.putString("id_guest", "id" + id_guest + "");
-//                editor.putString("username", NameUser + "");
-//                editor.putString("image", image + "");
-//                editor.commit();
-                Intent intent = new Intent(LoginActivity.this, AddFoodAdmin.class);
+                upData("id" + id_guest);
+                SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("id_guest", "id" + id_guest + "");
+                editor.putString("username", NameUser + "");
+                editor.putString("image", image + "");
+                editor.commit();
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
             }

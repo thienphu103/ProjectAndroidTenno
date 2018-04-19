@@ -208,7 +208,7 @@ public class DetailActivity extends AppCompatActivity {
                                     txt_motacachlam_details.setText(PREPARE);
                                     String url = "";
                                     if (!(IMAGE.isEmpty())) {
-                                        url = "" + IMAGE;
+                                        url = "http://namtnps06077.hol.es/" + IMAGE;
                                     } else {
                                         url = String.valueOf(R.drawable.ic_image_black_24dp);//null
                                     }

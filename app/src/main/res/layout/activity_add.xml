@@ -39,11 +39,8 @@
                         android:layout_height="200dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-
                         android:orientation="vertical"
-
                         >
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -63,8 +60,9 @@
                         </LinearLayout>
 
                         <ImageView
+
                             android:id="@+id/img_view_photo_nhaphang"
-                            android:layout_width="67dp"
+                            android:layout_width="200dp"
                             android:layout_height="67dp"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/dimens_margintop_loginactivity"
@@ -116,18 +114,36 @@
                     </LinearLayout>
 
                 </RelativeLayout>
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    android:text="Tên sản phẩm"
+                    android:text="Tên Món Ăn"
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
                 <EditText
-                    android:id="@+id/edt_ten_sp_nhaphang"
+                    android:id="@+id/edt_add_ten"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#EEEEEE"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="15sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Bữa Ăn"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edt_add_buaan"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
@@ -144,114 +160,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="15dp"
-                    android:text="Đơn giá"
+                    android:text="Mã Thời Gian- Nhiệt Độ"
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
                 <EditText
-                    android:id="@+id/edt_gia_nhaphang"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#EEEEEE"
-                    android:inputType="number"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Số lượng"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-
-                <EditText
-                    android:id="@+id/edt_soluong_nhaphang"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#EEEEEE"
-                    android:inputType="number"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Ngày sản xuất (nếu có)"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-
-                <EditText
-                    android:id="@+id/edt_ngaysanxuat_nhaphang"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#EEEEEE"
-                    android:inputType="date"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Hạn sử dụng (nếu có)"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-
-                <EditText
-                    android:id="@+id/edt_hansudung__nhaphang"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#EEEEEE"
-                    android:inputType="date"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:textSize="15sp" />
-
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Kích cỡ (nếu có)"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-
-                <EditText
-                    android:id="@+id/edt_kichco_nhaphang"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#EEEEEE"
-                    android:inputType="number"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:textSize="15sp" />
-
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Mô tả"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-
-                <EditText
-                    android:id="@+id/edt_mota_nhaphang"
+                    android:id="@+id/edt_add_ndo"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
@@ -260,6 +174,89 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Giới Thiệu Món Ăn"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edt_add_gthieu"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#EEEEEE"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Nguyên Liệu"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edt_add_nlieu"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#EEEEEE"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Các Bước Chuẩn Bị"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edt_add_cbi"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#EEEEEE"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="15sp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Cách Làm"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edt_add_cachlam"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#EEEEEE"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="15sp" />
+
+
 
                 <Button
 
@@ -268,7 +265,7 @@
                     android:layout_height="55dp"
                     android:layout_margin="20dp"
                     android:background="#1ABC9C"
-                    android:text="Xác nhận nhập hàng"
+                    android:text="Xác nhận thêm món ăn"
                     android:textAllCaps="false"
                     android:textColor="#fff"
                     android:textSize="20dp"
