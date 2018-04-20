@@ -317,13 +317,13 @@ public class HomeActivity extends AppCompatActivity
                 .into(imageView_avatar);
 
     }
-    private void hideItem()
-    {
+
+    private void hideItem() {
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         Menu nav_Menu = navigationView.getMenu();
         nav_Menu.findItem(R.id.nan_addmonan).setVisible(false);
-        nav_Menu.findItem(R.id.nan_acount).setVisible(false);
     }
+
     private void initEvent() {
         Window window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -433,17 +433,17 @@ public class HomeActivity extends AppCompatActivity
 //            findViewById(R.id.nan_addmonan).setVisibility(View.GONE);
 //            findViewById(R.id.nan_acount).setVisibility(View.VISIBLE);
 //        }
-            if (id == R.id.nan_addmonan) {
-                Intent Home_Addfood = new Intent(HomeActivity.this, AddFoodAdmin.class);
-                startActivity(Home_Addfood);
+        if (id == R.id.nan_addmonan) {
+            Intent Home_Addfood = new Intent(HomeActivity.this, AddFoodAdmin.class);
+            startActivity(Home_Addfood);
 
-            } else if (id == R.id.nan_acount) {
-                Intent Home_Acount = new Intent(HomeActivity.this, Account_Admin.class);
-                startActivity(Home_Acount);
-            } else if (id == R.id.nav_camera) {
-                Intent Home_FavoriteFood = new Intent(HomeActivity.this, FavoriteFoodAtivity.class);
-                startActivity(Home_FavoriteFood);
-                // Handle the camera action
+//            } else if (id == R.id.nan_acount) {
+//                Intent Home_Acount = new Intent(HomeActivity.this, Account_Admin.class);
+//                startActivity(Home_Acount);
+        } else if (id == R.id.nav_camera) {
+            Intent Home_FavoriteFood = new Intent(HomeActivity.this, FavoriteFoodAtivity.class);
+            startActivity(Home_FavoriteFood);
+            // Handle the camera action
 //        } else if (id == R.id.nav_gallery) {
 //            Intent Home_Changethepassword = new Intent(HomeActivity.this, ChangethepasswordActivity.class);
 //            startActivity(Home_Changethepassword);
@@ -451,13 +451,13 @@ public class HomeActivity extends AppCompatActivity
 //        } else if (id == R.id.nav_slideshow) {
 //            Intent Home_DevelopmentTeam = new Intent(HomeActivity.this, DevelopmentTeamActivity.class);
 //            startActivity(Home_DevelopmentTeam);
-            } else if (id == R.id.nav_manage) {
-                Intent Home_Login = new Intent(HomeActivity.this, LoginActivity.class);
-                finish();
-                startActivity(Home_Login);
-                finish();
+        } else if (id == R.id.nav_manage) {
+            Intent Home_Login = new Intent(HomeActivity.this, LoginActivity.class);
+            finish();
+            startActivity(Home_Login);
+            finish();
 
-            }
+        }
 
         return true;
     }
@@ -515,9 +515,9 @@ public class HomeActivity extends AppCompatActivity
                     Desc.setText((queryResults.getString("text")));
                     SharedPreferences sharedPreferences = getSharedPreferences("Weather", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("weather_today", (queryResultsWeatherDay.getString("high")) + "°C");
-                    editor.putString("weather_tomorrow", (queryResultsWeatherTommorrow.getString("high")) + "°C");
-                    editor.putString("weather_tomorrow2", (queryResultsWeatherTommorrow2.getString("high")) + "°C");
+                    editor.putString("weather_today", (queryResults.getString("temp")));
+                    editor.putString("weather_tomorrow", (queryResultsWeatherTommorrow.getString("high")));
+                    editor.putString("weather_tomorrow2", (queryResultsWeatherTommorrow2.getString("high")));
                     editor.commit();
 
                 } catch (JSONException e) {

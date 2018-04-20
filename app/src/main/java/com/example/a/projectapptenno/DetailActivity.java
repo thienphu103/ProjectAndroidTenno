@@ -3,6 +3,7 @@ package com.example.a.projectapptenno;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -51,7 +52,8 @@ public class DetailActivity extends AppCompatActivity {
     String id_food = "";
     ArrayList<Fragment_Setter_Getter> arrayList;
     private String id_guest;
-    private ImageView img_monan_details;
+    private ImageView img_monan_details,img_back_details;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +81,13 @@ public class DetailActivity extends AppCompatActivity {
         txt_nguyenlieu_details.setText("");
         txt_motacacbuoclam_details.setText("");
         txt_motacachlam_details.setText("");
+        img_back_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -102,6 +111,7 @@ public class DetailActivity extends AppCompatActivity {
         txt_motacacbuoclam_details = (TextView) findViewById(R.id.txt_motacacbuoclam_details);
         img_monan_details = (ImageView) findViewById(R.id.img_monan_details);
         btn_themvaodanhsachyeuthich_details = (Button) findViewById(R.id.btn_themvaodanhsachyeuthich_details);
+        img_back_details=(ImageView) findViewById(R.id.img_back_details);
 
     }
 

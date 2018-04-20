@@ -62,7 +62,7 @@
                         <ImageView
 
                             android:id="@+id/img_view_photo_nhaphang"
-                            android:layout_width="200dp"
+                            android:layout_width="67dp"
                             android:layout_height="67dp"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/dimens_margintop_loginactivity"
@@ -160,7 +160,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="15dp"
-                    android:text="Mã Thời Gian- Nhiệt Độ"
+                    android:text="Mã Thời Gian- Nhiệt Độ (Giá trị 1-6)"
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
@@ -170,7 +170,10 @@
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
                     android:background="#EEEEEE"
-                    android:inputType="text"
+                    android:digits="123456"
+                    android:maxLength="1"
+                    android:inputType="number"
+
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:textSize="15sp" />

@@ -135,6 +135,7 @@
             android:textStyle="bold"
             />
         <Button
+            android:visibility="gone"
             android:id="@+id/btn_chiaselenfb_details"
             android:layout_width="match_parent"
             android:layout_height="36dp"

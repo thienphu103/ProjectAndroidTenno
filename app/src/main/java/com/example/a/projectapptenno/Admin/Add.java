@@ -3,11 +3,11 @@ package com.example.a.projectapptenno.Admin;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -53,7 +53,7 @@ public class Add extends AppCompatActivity {
     private String diachi_post;
     private String email_post;
     private String ten_post;
-    private ImageView img_view_photo_nhaphang;
+    private ImageView img_view_photo_nhaphang,img_admin;
     private int CAMERA_REQUEST = 1;
     private int CAMERA_REQUEST_MAX = 1999;
     private Uri picUri;
@@ -67,6 +67,9 @@ public class Add extends AppCompatActivity {
     private String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/crud.php";
     private String id_update;
     private int SELECT_FILE = 2;
+    private ProgressDialog mProgressDialog;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +102,9 @@ public class Add extends AppCompatActivity {
                         && !(txt_chuanbi.isEmpty())
                         && !(txt_cachlam.isEmpty())) {
                     if (id_update != null) {
-                        updateData();
+                      showQuestionUpdateData();
                     } else {
-                        upData();
+                       showQuestionUpData();
                     }
 
 
@@ -193,13 +196,74 @@ public class Add extends AppCompatActivity {
 
 
     }
+    public void showQuestionClose() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("App");
+        builder.setMessage("Thành Công");
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                hideProgressDialog();
+                Intent intent=new Intent(getApplicationContext(),AddFoodAdmin.class);
+                startActivity(intent);
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
 
+    }
+    public void showQuestionUpData() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("App");
+        builder.setMessage("Bạn có thêm món ăn không");
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                upData();
+                showProgressDialog();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+    public void showQuestionUpdateData() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("App");
+        builder.setMessage("Bạn có cập nhật món ăn không");
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+               updateData();
+               showProgressDialog();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
 
     public void upData() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_CALL_API_GET_DATA, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                showQuestionClose();
                 Toast.makeText(getApplicationContext(), "Thêm Thành Công", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
@@ -238,6 +302,7 @@ public class Add extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_CALL_API_GET_DATA, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                showQuestionClose();
                 Toast.makeText(getApplicationContext(), "Sửa Thành Công", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
@@ -284,11 +349,19 @@ public class Add extends AppCompatActivity {
         btn_camera = (Button) findViewById(R.id.btn_camera_nhaphang);
         btn_gallary = (Button) findViewById(R.id.btn_gallary_nhaphang);
         img_view_photo_nhaphang = (ImageView) findViewById(R.id.img_view_photo_nhaphang);
+        img_admin=(ImageView) findViewById(R.id.img_admin);
 
 
     }
 
     private void initEvent() {
+        img_admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),AddFoodAdmin.class);
+                startActivity(intent);
+            }
+        });
         SharedPreferences sharedPreferences2 = getApplicationContext().getSharedPreferences("Update", MODE_PRIVATE);
         id_update = sharedPreferences2.getString("id_update", null);
         if (id_update != null) {
@@ -468,6 +541,21 @@ public class Add extends AppCompatActivity {
 
         }
     }
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -488,15 +576,15 @@ public class Add extends AppCompatActivity {
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
                     img_view_photo_nhaphang.setImageBitmap(imageBitmap);
                 }
-//
+
 //                // user is returning from cropping the image
-//                else if (requestCode == PIC_CROP) {
-//                    // get the returned data
-//                    Bundle extras = data.getExtras();
-//                    // get the cropped bitmap
-//                    Bitmap thePic = extras.getParcelable("data");
-//                    img_view_photo_nhaphang.setImageBitmap(thePic);
-//                }
+                else if (requestCode == PIC_CROP) {
+                    // get the returned data
+                    Bundle extras = data.getExtras();
+                    // get the cropped bitmap
+                    Bitmap thePic = extras.getParcelable("data");
+                    img_view_photo_nhaphang.setImageBitmap(thePic);
+                }
 
 
             }

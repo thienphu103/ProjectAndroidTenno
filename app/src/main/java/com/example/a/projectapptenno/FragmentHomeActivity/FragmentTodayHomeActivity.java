@@ -46,6 +46,8 @@ public class FragmentTodayHomeActivity extends Fragment {
     private TextView txt_tempNight;
     private String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/crud.php";
     private ProgressDialog mProgressDialog;
+    private String id_temp = "";
+    String weather_today_text = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,19 +57,47 @@ public class FragmentTodayHomeActivity extends Fragment {
         initControl();
         initData();
         initEvent();
-        initDisplay();
+
         return TodayFragment;
     }
 
     private void initEvent() {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("Weather", MODE_PRIVATE);
         String weather_today = sharedPreferences.getString("weather_today", null);
-        txt_tempSun.setText(weather_today);
-        txt_tempNoon.setText(weather_today);
-        txt_tempAfternoon.setText(weather_today);
-        txt_tempNight.setText(weather_today);
+        if (weather_today!=null){
+           weather_today_text= weather_today.substring(0, 2);
+        }
 
+
+        txt_tempSun.setText(String.valueOf(Integer.parseInt(weather_today.substring(0,2))-3)+ "°C");
+        txt_tempNoon.setText(String.valueOf(Integer.parseInt(weather_today.substring(0,2))+2)+ "°C");
+        txt_tempAfternoon.setText(String.valueOf(Integer.parseInt(weather_today.substring(0,2))-2)+ "°C");
+        txt_tempNight.setText(String.valueOf(Integer.parseInt(weather_today.substring(0,2))-4)+ "°C");
+        int temp = Integer.parseInt(weather_today.substring(0, 2));
+        if (13 > temp ) {
+            id_temp = "1";
+        }
+        if (13 < temp && temp <= 20) {
+            id_temp = "2";
+        }
+        else if (20 < temp && temp <= 28) {
+            id_temp = "3";
+        }
+        else if (28 < temp && temp <= 32) {
+            id_temp = "4";
+        }
+        else if (32 < temp && temp <= 36) {
+            id_temp = "5";
+        }
+        else if (temp > 36) {
+            id_temp = "6";
+        }
+        Toast.makeText(getContext(), "Chỉ Số Gợi Ý Ngày Mai " + "[" + temp + "_" + id_temp + "]", Toast.LENGTH_LONG).show();
+        initDisplay(id_temp);
     }
+
+
+
 
     private void initControl() {
         listView = (ListView) TodayFragment.findViewById(R.id.lst_fragment);
@@ -122,7 +152,8 @@ public class FragmentTodayHomeActivity extends Fragment {
 
     }
 
-    private void initDisplay() {
+    private void initDisplay(final String id_temp) {
+
         Toast.makeText(getActivity(), "loading database ", Toast.LENGTH_SHORT).show();
         final RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         final StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_CALL_API_GET_DATA,
@@ -146,10 +177,13 @@ public class FragmentTodayHomeActivity extends Fragment {
                                 arrayList.add(new Fragment_Setter_Getter(IMAGE, ID, MEAL, TITLE));
                                 Log.d("JS0Ndata", TITLE + "");
                             }
+
                             Log.d("JS0NArrayyyy", array.length() + "");
                             adapter = new com.example.a.projectapptenno.Adapter.Fragment(arrayList, getActivity());
+                            adapter.notifyDataSetChanged();
                             if (arrayList.size() > 0) {
                                 listView.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
                             }
                             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
@@ -157,7 +191,7 @@ public class FragmentTodayHomeActivity extends Fragment {
                                     Toast.makeText(getContext(), "ID: " + arrayList.get(position).getTxt_id() + ", Name: " + arrayList.get(position).getTxt_monan(), Toast.LENGTH_SHORT).show();
                                     SharedPreferences sharedPreferences = getContext().getSharedPreferences("Food", MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    editor.putString("id_food",arrayList.get(position).getTxt_id()+"");
+                                    editor.putString("id_food", arrayList.get(position).getTxt_id() + "");
                                     editor.commit();
                                     Intent Today_Detai = new Intent(getActivity(), DetailActivity.class);
                                     startActivity(Today_Detai);
@@ -197,7 +231,8 @@ public class FragmentTodayHomeActivity extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put("select", "1");
+                hashMap.put("select", "9");
+                hashMap.put("id_temp", id_temp);
                 return hashMap;
             }
         };

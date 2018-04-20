@@ -185,8 +185,10 @@ public class FavoriteFoodAtivity extends AppCompatActivity {
                             }
                             Log.d("JS0NArrayyyy", array.length() + "");
                             adapter = new Favorite_Food(arrayList, FavoriteFoodAtivity.this, click);
+                            adapter.notifyDataSetChanged();
                             if (arrayList.size() > 0) {
                                 listView.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
                                 adapter.notifyDataSetChanged();
                             }
                             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

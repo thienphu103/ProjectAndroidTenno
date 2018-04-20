@@ -8,6 +8,7 @@
             android:id="@+id/nan_acount"
             android:title="Quản Lý Tài Khoản"
             android:icon="@drawable/account"
+            android:visible="false"
             />
         <item
             android:id="@+id/nan_addmonan"

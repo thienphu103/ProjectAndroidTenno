@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.a.projectapptenno.Adapter.Add_Admin;
 import com.example.a.projectapptenno.DetailActivity;
+import com.example.a.projectapptenno.HomeActivity;
 import com.example.a.projectapptenno.R;
 import com.example.a.projectapptenno.Setter_Getter.Favorite_Food_Setter_Getter;
 
@@ -44,6 +46,7 @@ public class AddFoodAdmin extends AppCompatActivity {
     Button btn_add;
     private String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/crud.php";
     View.OnClickListener click2;
+    ImageView img_bachaddfood_admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,8 @@ public class AddFoodAdmin extends AppCompatActivity {
     private void initControl() {
         listView = (ListView) findViewById(R.id.lst_addadmin);
         btn_add = (Button) findViewById(R.id.btn_add);
+        img_bachaddfood_admin=(ImageView) findViewById(R.id.img_bachaddfood_admin);
+
     }
 
     private void initData() {
@@ -67,6 +72,13 @@ public class AddFoodAdmin extends AppCompatActivity {
 //        adapter = new Add_Admin(arrayList,AddFoodAdmin.this);
 //        listView.setAdapter(adapter);
 //
+        img_bachaddfood_admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);
+            }
+        });
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,8 +138,10 @@ public class AddFoodAdmin extends AppCompatActivity {
                             }
                             Log.d("JS0NArrayyyy", array.length() + "");
                             adapter = new Add_Admin(arrayList, getApplicationContext(), click, click2);
+                            adapter.notifyDataSetChanged();
                             if (arrayList.size() > 0) {
                                 listView.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
                             }
                             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
