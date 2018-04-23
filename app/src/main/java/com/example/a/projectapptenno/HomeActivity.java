@@ -311,7 +311,7 @@ public class HomeActivity extends AppCompatActivity
                 .load(url)
                 .error(R.drawable.ic_image_black_24dp)//load url error
                 .placeholder(R.drawable.ic_image_black_24dp)//load url error\
-                .resize(200, 200)
+                .resize(180, 180)
                 .centerCrop()
                 .transform(new CircleTransform())
                 .into(imageView_avatar);

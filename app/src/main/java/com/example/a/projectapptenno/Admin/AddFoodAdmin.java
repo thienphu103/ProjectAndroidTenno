@@ -138,7 +138,6 @@ public class AddFoodAdmin extends AppCompatActivity {
                             }
                             Log.d("JS0NArrayyyy", array.length() + "");
                             adapter = new Add_Admin(arrayList, getApplicationContext(), click, click2);
-                            adapter.notifyDataSetChanged();
                             if (arrayList.size() > 0) {
                                 listView.setAdapter(adapter);
                                 adapter.notifyDataSetChanged();
@@ -238,7 +237,7 @@ public class AddFoodAdmin extends AppCompatActivity {
     public void showQuestionDelete(final int integer) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("App");
-        builder.setMessage("Bạn có muốn xóa món ăn: " + arrayList.get(integer).getTxt_id().toString() + " ra khỏi danh sách yêu thích không");
+        builder.setMessage("Bạn có muốn xóa món ăn: " + arrayList.get(integer).getTxt_id().toString() + " ra khỏi danh sách không");
         builder.setCancelable(false);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override

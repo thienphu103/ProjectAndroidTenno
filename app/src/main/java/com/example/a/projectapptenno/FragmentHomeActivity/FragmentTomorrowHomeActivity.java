@@ -89,7 +89,7 @@ public class FragmentTomorrowHomeActivity extends Fragment {
         else if (temp > 36) {
             id_temp = "6";
         }
-        Toast.makeText(getContext(), "Chỉ Số Gợi Ý Ngày Mai " + "[" + temp + "_" + id_temp + "]", Toast.LENGTH_LONG).show();
+   //     Toast.makeText(getContext(), "Chỉ Số Gợi Ý Ngày Mai " + "[" + temp + "_" + id_temp + "]", Toast.LENGTH_LONG).show();
         initDisplay(id_temp);
     }
 

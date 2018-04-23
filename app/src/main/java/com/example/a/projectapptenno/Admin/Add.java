@@ -104,7 +104,7 @@ public class Add extends AppCompatActivity {
                     if (id_update != null) {
                       showQuestionUpdateData();
                     } else {
-                       showQuestionUpData();
+                     showQuestionUpData();
                     }
 
 
@@ -183,9 +183,15 @@ public class Add extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("image/*");
-                startActivityForResult(intent, SELECT_FILE);
+                try {
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intent.setType("image/*");
+                    startActivityForResult(intent, SELECT_FILE);
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                    showQuestionError();
+                }
+
             }
         });
 
@@ -196,6 +202,23 @@ public class Add extends AppCompatActivity {
 
 
     }
+    public void showQuestionError() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("App");
+        builder.setMessage("Có lỗi xảy ra vui lòng thử lại !");
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+//                hideProgressDialog();
+                Intent intent=new Intent(getApplicationContext(),AddFoodAdmin.class);
+                startActivity(intent);
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
     public void showQuestionClose() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("App");
@@ -204,7 +227,7 @@ public class Add extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                hideProgressDialog();
+//                hideProgressDialog();
                 Intent intent=new Intent(getApplicationContext(),AddFoodAdmin.class);
                 startActivity(intent);
             }
@@ -221,8 +244,9 @@ public class Add extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+//                showProgressDialog();
                 upData();
-                showProgressDialog();
+
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -244,7 +268,7 @@ public class Add extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                updateData();
-               showProgressDialog();
+//               showProgressDialog();
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -264,7 +288,7 @@ public class Add extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 showQuestionClose();
-                Toast.makeText(getApplicationContext(), "Thêm Thành Công", Toast.LENGTH_SHORT).show();
+                Log.d("Updata","Thêm Thành Công");
             }
         }, new Response.ErrorListener() {
             @Override
@@ -564,26 +588,50 @@ public class Add extends AppCompatActivity {
         if (resultCode == Activity.RESULT_OK) {
 
             if (requestCode == SELECT_FILE) {
-                Uri selectedImageUri = data.getData();
-                img_view_photo_nhaphang.setImageURI(selectedImageUri);
+                try{
+                    Uri selectedImageUri = data.getData();
+                    img_view_photo_nhaphang.setImageURI(selectedImageUri);
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                    showQuestionError();
+                }
+
             } else if (resultCode == RESULT_OK) {
                 if (requestCode == CAMERA_REQUEST) {
                     // get the Uri for the captured image
-                    picUri = data.getData();
-                    performCrop();
+                    try{
+                        picUri = data.getData();
+                        performCrop();
+                    }catch (Exception ex){
+                        ex.printStackTrace();
+                        showQuestionError();
+                    }
+
                 } else if (requestCode == CAMERA_REQUEST_MAX) {
-                    Bundle extras = data.getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                    img_view_photo_nhaphang.setImageBitmap(imageBitmap);
+                    try{
+                        Bundle extras = data.getExtras();
+                        Bitmap imageBitmap = (Bitmap) extras.get("data");
+                        img_view_photo_nhaphang.setImageBitmap(imageBitmap);
+                    }catch (Exception ex){
+                        ex.printStackTrace();
+                        showQuestionError();
+                    }
+
                 }
 
 //                // user is returning from cropping the image
                 else if (requestCode == PIC_CROP) {
+                    try{
+                        Bundle extras = data.getExtras();
+                        // get the cropped bitmap
+                        Bitmap thePic = extras.getParcelable("data");
+                        img_view_photo_nhaphang.setImageBitmap(thePic);
+                    }catch (Exception ex){
+                        ex.printStackTrace();
+                        showQuestionError();
+                    }
                     // get the returned data
-                    Bundle extras = data.getExtras();
-                    // get the cropped bitmap
-                    Bitmap thePic = extras.getParcelable("data");
-                    img_view_photo_nhaphang.setImageBitmap(thePic);
+
                 }
 
 
